@@ -61,16 +61,33 @@
             position: relative;
         }
         
-        select { 
+        select, input[type="text"] { 
             width: 100%; 
             padding: 10px; 
-            margin: 10px 0 15px; 
+            margin: 5px 0 15px; 
             border: 1px solid var(--border-color); 
             border-radius: 4px; 
             font-family: monospace; 
             font-size: 1.05em;
             background: var(--input-bg);
             color: var(--text-color);
+            box-sizing: border-box; /* Ważne dla paddingu */
+        }
+
+        /* Styl dla kontenera wyszukiwania */
+        .search-row {
+            display: flex;
+            gap: 15px;
+            margin-bottom: 10px;
+        }
+        .search-group {
+            flex: 1;
+        }
+        .search-group label {
+            font-size: 0.9em;
+            font-weight: bold;
+            display: block;
+            margin-bottom: 3px;
         }
 
         button { 
@@ -135,6 +152,11 @@
                 --station-header-text: black;
             }
         }
+        
+        /* Responsywność wyszukiwarki na małych ekranach */
+        @media (max-width: 600px) {
+            .search-row { flex-direction: column; gap: 0; }
+        }
     </style>
 </head>
 <body>
@@ -144,7 +166,20 @@
 
     <h1>Wykaz Ostrzeżeń Stałych (WOS) – TD2</h1>
     
-    <label for="maszynista">Maszynista:</label>
+    <div class="search-row">
+        <div class="search-group">
+            <label for="search-nick">Szukaj po nicku:</label>
+            <input type="text" id="search-nick" list="list-nicks" placeholder="Wpisz nick maszynisty...">
+            <datalist id="list-nicks"></datalist>
+        </div>
+        <div class="search-group">
+            <label for="search-train">Szukaj po nr pociągu:</label>
+            <input type="text" id="search-train" list="list-trains" placeholder="Wpisz numer pociągu...">
+            <datalist id="list-trains"></datalist>
+        </div>
+    </div>
+
+    <label for="maszynista">Pełna lista (Maszynista | Pociąg):</label>
     <select id="maszynista">
         <option value="">-- Wybierz maszynistę --</option>
     </select>
@@ -181,9 +216,16 @@
 <script type="module">
     let trainsData = [];
     let stations = [];
+    
+    // Mapy pomocnicze do szybkiego wyszukiwania
+    const nickToTrainMap = new Map();
+    const trainToNickMap = new Map();
 
     async function loadMaszynisci() {
         const select = document.getElementById('maszynista');
+        const dlNicks = document.getElementById('list-nicks');
+        const dlTrains = document.getElementById('list-trains');
+
         try {
             const response = await fetch('https://stacjownik.spythere.eu/api/getActiveData');
             if (!response.ok) throw new Error('Błąd API');
@@ -204,14 +246,34 @@
             });
             const bezRozkladu = sortedNames.filter(name => !zRozkladem.includes(name));
 
-            // Dodaj maszynistów z rozkładem w formacie: Nick | Numer
+            // Wypełnianie list i podpowiedzi
             zRozkladem.forEach(name => {
                 const train = maszynisciMap.get(name);
                 const trainNo = train.trainNo || "???";
+
+                // Główny Select
                 const option = document.createElement('option');
                 option.value = name;
                 option.textContent = `${name} | ${trainNo}`;
                 select.appendChild(option);
+
+                // Datalist: Nicki
+                const optNick = document.createElement('option');
+                optNick.value = name;
+                dlNicks.appendChild(optNick);
+
+                // Datalist: Numery pociągów
+                if (train.trainNo) {
+                    const optTrain = document.createElement('option');
+                    optTrain.value = train.trainNo;
+                    // Opcjonalnie: dodaj info o nicku w label, ale value musi być numerem dla inputu
+                    optTrain.label = name; 
+                    dlTrains.appendChild(optTrain);
+
+                    // Zapisz mapowania
+                    nickToTrainMap.set(name, train.trainNo);
+                    trainToNickMap.set(train.trainNo, name);
+                }
             });
 
             if (zRozkladem.length > 0 && bezRozkladu.length > 0) {
@@ -237,6 +299,46 @@
         }
     }
 
+    // --- LOGIKA WYSZUKIWANIA ---
+
+    const searchNickInput = document.getElementById('search-nick');
+    const searchTrainInput = document.getElementById('search-train');
+    const mainSelect = document.getElementById('maszynista');
+
+    // 1. Szukanie po Nicku
+    searchNickInput.addEventListener('input', (e) => {
+        const val = e.target.value;
+        // Sprawdź czy wpisana wartość to poprawny nick z listy (z rozkładem)
+        if (nickToTrainMap.has(val)) {
+            mainSelect.value = val;
+            updateStacjeFromMaszynista();
+            // Czyść drugie pole, żeby nie myliło
+            searchTrainInput.value = "";
+        }
+    });
+
+    // 2. Szukanie po Numerze Pociągu
+    searchTrainInput.addEventListener('input', (e) => {
+        const val = e.target.value;
+        // Sprawdź czy wpisana wartość to poprawny numer pociągu
+        if (trainToNickMap.has(val)) {
+            const driverName = trainToNickMap.get(val);
+            mainSelect.value = driverName;
+            updateStacjeFromMaszynista();
+            // Czyść drugie pole
+            searchNickInput.value = "";
+        }
+    });
+    
+    // Obsługa zmiany w głównym select (żeby wyczyścić wyszukiwarki)
+    mainSelect.addEventListener('change', () => {
+        updateStacjeFromMaszynista();
+        searchNickInput.value = "";
+        searchTrainInput.value = "";
+    });
+
+    // --- KONIEC LOGIKI WYSZUKIWANIA ---
+
     function updateStacjeFromMaszynista() {
         const selectedDriver = document.getElementById('maszynista').value;
         if (!selectedDriver) return;
@@ -244,9 +346,7 @@
         const train = trainsData.filter(t => t.driverName === selectedDriver).find(t => t.timetable?.path);
         
         if (!train || !train.timetable?.path) {
-            alert('Brak danych trasy.');
-            document.getElementById('maszynista').value = '';
-            document.getElementById('printButton').disabled = true;
+            // Jeśli wybrano kogoś bez trasy (teoretycznie zablokowane, ale dla pewności)
             document.getElementById("wynik").innerHTML = "";
             return;
         }
@@ -265,7 +365,6 @@
         document.getElementById('printButton').disabled = false;
     }
 
-    document.getElementById('maszynista').addEventListener('change', updateStacjeFromMaszynista);
     document.addEventListener('DOMContentLoaded', loadMaszynisci);
 
     function normalizuj(nazwa) {
