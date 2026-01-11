@@ -61,7 +61,6 @@
             position: relative;
         }
         
-        /* Styl dla sekcji wyszukiwania */
         .search-grid {
             display: grid;
             grid-template-columns: 1fr 1fr;
@@ -85,6 +84,11 @@
             background: var(--input-bg);
             color: var(--text-color);
             box-sizing: border-box;
+        }
+
+        input:focus {
+            outline: 2px solid var(--btn-bg);
+            border-color: transparent;
         }
 
         button { 
@@ -161,18 +165,18 @@
     
     <div class="search-grid">
         <div class="input-group">
-            <label for="search-train">Szukaj po numerze pociągu:</label>
-            <input type="text" id="search-train" placeholder="Np. 41102...">
+            <label for="search-train">Numer pociągu (zatwierdź Enter):</label>
+            <input type="text" id="search-train" placeholder="Np. 41102">
         </div>
         <div class="input-group">
-            <label for="search-driver">Szukaj po nicku:</label>
-            <input type="text" id="search-driver" placeholder="Np. JanKowalski...">
+            <label for="search-driver">Nick maszynisty (zatwierdź Enter):</label>
+            <input type="text" id="search-driver" placeholder="Np. Janusz">
         </div>
     </div>
 
-    <label for="maszynista">Wybierz z listy:</label>
+    <label for="maszynista">Dopasowany pociąg:</label>
     <select id="maszynista">
-        <option value="">-- Wybierz pociąg --</option>
+        <option value="">-- Najpierw wyszukaj lub wybierz --</option>
     </select>
 
     <div>
@@ -206,7 +210,7 @@
 
 <script type="module">
     let trainsData = [];
-    let stations = [];
+    let stationsString = "";
     let maszynisciList = [];
 
     async function loadMaszynisci() {
@@ -231,7 +235,6 @@
             });
             const bezRozkladu = sortedNames.filter(name => !zRozkladem.includes(name));
 
-            // Zapisujemy listę do filtrowania
             maszynisciList = zRozkladem.map(name => {
                 const train = maszynisciMap.get(name);
                 return {
@@ -279,8 +282,8 @@
         }
     }
 
-    // Obsługa wyszukiwania
-    function filterData() {
+    // Funkcja filtrująca
+    function filterData(autoSelect = false) {
         const trainVal = document.getElementById('search-train').value.toLowerCase();
         const driverVal = document.getElementById('search-driver').value.toLowerCase();
 
@@ -291,15 +294,24 @@
 
         renderOptions(filtered);
 
-        // Jeśli po filtracji został tylko jeden pociąg i wpisano coś konkretnego, wybierz go automatycznie
-        if (filtered.length === 1 && (trainVal.length > 2 || driverVal.length > 2)) {
+        // Jeśli autoSelect jest true (czyli wciśnięto Enter) i mamy jakiekolwiek wyniki
+        if (autoSelect && filtered.length > 0) {
             document.getElementById('maszynista').value = filtered[0].name;
             updateStacjeFromMaszynista();
         }
     }
 
-    document.getElementById('search-train').addEventListener('input', filterData);
-    document.getElementById('search-driver').addEventListener('input', filterData);
+    // Obsługa wpisywania (filtrowanie listy na żywo)
+    document.getElementById('search-train').addEventListener('input', () => filterData(false));
+    document.getElementById('search-driver').addEventListener('input', () => filterData(false));
+
+    // Obsługa Enter
+    document.getElementById('search-train').addEventListener('keypress', (e) => {
+        if (e.key === 'Enter') filterData(true);
+    });
+    document.getElementById('search-driver').addEventListener('keypress', (e) => {
+        if (e.key === 'Enter') filterData(true);
+    });
 
     function updateStacjeFromMaszynista() {
         const selectedDriver = document.getElementById('maszynista').value;
@@ -313,7 +325,6 @@
         
         if (!train || !train.timetable?.path) {
             alert('Brak danych trasy dla wybranego maszynisty.');
-            document.getElementById('maszynista').value = '';
             document.getElementById('printButton').disabled = true;
             document.getElementById("wynik").innerHTML = "";
             return;
@@ -328,7 +339,7 @@
                 return match ? match[1] : name;
             });
 
-        stations = pathStations.join(',');
+        stationsString = pathStations.join(',');
         generujWOS();
         document.getElementById('printButton').disabled = false;
     }
@@ -344,9 +355,9 @@
     function formatKm(km) { return km ? km.replace('.', ',') : '—'; }
 
     function generujWOS() {
-        const maszynista = document.getElementById("maszynista").value || "—";
-        const input = stations.trim();
-        if (input.length === 0) return;
+        const maszynista = document.getElementById("maszynista").value;
+        const input = stationsString.trim();
+        if (!input) return;
 
         const wpisy = input.split(/[,;]\s*/).map(s => s.trim());
         let lp = 1;
@@ -359,9 +370,10 @@
             Wykaz Ostrzeżeń Stałych<br>
             oraz prędkości drogowych
         </h1>
-        <span style="float:right;">Godzina wydruku: <b>${new Date().toLocaleTimeString('pl-PL')}</b></span>
-        <span><br><br></span>
-        <span>Wygenerowano dla pociągu: <b>${trainNo}</b> (${maszynista})</span>
+        <div style="margin-bottom: 10px;">
+            <span style="float:right;">Godzina wydruku: <b>${new Date().toLocaleTimeString('pl-PL')}</b></span>
+            <span>Wygenerowano dla pociągu: <b>${trainNo}</b> (${maszynista})</span>
+        </div>
 
         <table class="wos-table">
           <thead>
@@ -412,6 +424,6 @@
         document.getElementById("wynik").innerHTML = html;
     }
 </script>
-<span style="float: right; margin-top: 10px;">© Blue & Kacper9 & bagi2424</span>
+<span style="float: right; margin-top: 10px;" class="no-print">© Blue & Kacper9 & bagi2424</span>
 </body>
 </html>
