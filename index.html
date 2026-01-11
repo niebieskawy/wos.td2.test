@@ -17,11 +17,14 @@
             --btn-hover: #1565c0;
             --btn-text: #ffffff;
             --link-text: #000000;
-            
+
             --table-border: #000000;
             --th-bg: #e8e8e8;
             --station-header-bg: #fffacd;
             --station-header-text: #000000;
+            --tab-bg: #f0f0f0;
+            --tab-active: #0d47a1;
+            --tab-hover: #e0e0e0;
         }
 
         body.dark-mode {
@@ -41,6 +44,9 @@
             --th-bg: #333333;
             --station-header-bg: #4a4a2a; 
             --station-header-text: #e0e0e0;
+            --tab-bg: #2a2a2a;
+            --tab-active: #64b5f6;
+            --tab-hover: #3a3a3a;
         }
 
         body { 
@@ -53,7 +59,7 @@
         h1 { color: var(--text-heading); text-align: center; margin-bottom: 0.4em; }
 
         a { color: var(--link-text);}
-        
+
         .container { 
             background: var(--bg-container); 
             padding: 20px; 
@@ -64,7 +70,7 @@
             transition: background 0.3s, border-color 0.3s;
             position: relative;
         }
-        
+
         select, input[type="text"] { 
             width: 100%; 
             padding: 10px; 
@@ -141,7 +147,44 @@
             padding-left: 12px;
             height: 30px;
         }
-        
+
+        /* Tab styles */
+        .tabs {
+            display: flex;
+            border-bottom: 2px solid var(--border-color);
+            margin-bottom: 20px;
+        }
+
+        .tab {
+            padding: 12px 24px;
+            background: var(--tab-bg);
+            border: 1px solid var(--border-color);
+            border-bottom: none;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-weight: bold;
+            margin-right: 2px;
+            border-radius: 4px 4px 0 0;
+        }
+
+        .tab:hover {
+            background: var(--tab-hover);
+        }
+
+        .tab.active {
+            background: var(--tab-active);
+            color: white;
+            border-color: var(--tab-active);
+        }
+
+        .tab-content {
+            display: none;
+        }
+
+        .tab-content.active {
+            display: block;
+        }
+
         @media print {
             .no-print { display: none !important; }
             body { margin: 0; background: white !important; color: black !important; }
@@ -154,10 +197,14 @@
                 --station-header-bg: #fffacd;
                 --station-header-text: black;
             }
+            .tabs { display: none !important; }
         }
-        
+
         @media (max-width: 600px) {
             .search-row { flex-direction: column; gap: 0; }
+            .tabs { flex-direction: column; }
+            .tab { margin-right: 0; margin-bottom: 2px; border-radius: 4px; }
+            .tab.active { border-bottom: 1px solid var(--tab-active); }
         }
     </style>
 </head>
@@ -167,34 +214,61 @@
     <button id="theme-toggle-btn">🌙</button>
 
     <h1>Wykaz Ostrzeżeń Stałych (WOS) – TD2</h1>
-    
-    <div class="search-row">
-        <div class="search-group">
-            <label for="search-nick">Szukaj po nicku:</label>
-            <input type="text" id="search-nick" list="list-nicks" placeholder="Wpisz nick maszynisty...">
-            <datalist id="list-nicks"></datalist>
+
+    <!-- Tab navigation -->
+    <div class="tabs">
+        <div class="tab active" data-tab="train-tab">WOS dla pociągu</div>
+        <div class="tab" data-tab="station-tab">WOS dla stacji</div>
+    </div>
+
+    <!-- Tab 1: WOS dla pociągu -->
+    <div id="train-tab" class="tab-content active">
+        <div class="search-row">
+            <div class="search-group">
+                <label for="search-nick">Szukaj po nicku:</label>
+                <input type="text" id="search-nick" list="list-nicks" placeholder="Wpisz nick maszynisty...">
+                <datalist id="list-nicks"></datalist>
+            </div>
+            <div class="search-group">
+                <label for="search-train">Szukaj po nr pociągu:</label>
+                <input type="text" id="search-train" list="list-trains" placeholder="Wpisz numer pociągu...">
+                <datalist id="list-trains"></datalist>
+            </div>
         </div>
-        <div class="search-group">
-            <label for="search-train">Szukaj po nr pociągu:</label>
-            <input type="text" id="search-train" list="list-trains" placeholder="Wpisz numer pociągu...">
-            <datalist id="list-trains"></datalist>
+
+        <label for="maszynista">Pełna lista (Maszynista | Pociąg):</label>
+        <select id="maszynista">
+            <option value="">-- Wybierz maszynistę --</option>
+        </select>
+
+        <div>
+            <button id="printButton" disabled onclick="window.print()">Drukuj / Zapisz jako PDF</button>
         </div>
     </div>
 
-    <label for="maszynista">Pełna lista (Maszynista | Pociąg):</label>
-    <select id="maszynista">
-        <option value="">-- Wybierz maszynistę --</option>
-    </select>
+    <!-- Tab 2: WOS dla stacji -->
+    <div id="station-tab" class="tab-content">
+        <div class="search-group">
+            <label for="search-station">Szukaj stacji:</label>
+            <input type="text" id="search-station" list="list-stations" placeholder="Wpisz nazwę stacji...">
+            <datalist id="list-stations"></datalist>
+        </div>
 
-    <div>
-        <button id="printButton" disabled onclick="window.print()">Drukuj / Zapisz jako PDF</button>
+        <label for="station-select">Wybierz stację z listy:</label>
+        <select id="station-select">
+            <option value="">-- Wybierz stację --</option>
+        </select>
+
+        <div>
+            <button id="station-printButton" disabled onclick="window.print()">Drukuj / Zapisz jako PDF</button>
+        </div>
     </div>
 </div>
 
 <div class="container">
     <div id="wynik"></div>
 </div>
-    
+
 <script src="baza.js"></script>
 
 <script>
@@ -213,12 +287,30 @@
             toggleBtn.textContent = '🌙';
         }
     });
+
+    // Tab functionality
+    const tabs = document.querySelectorAll('.tab');
+    const tabContents = document.querySelectorAll('.tab-content');
+
+    tabs.forEach(tab => {
+        tab.addEventListener('click', () => {
+            const targetTab = tab.dataset.tab;
+            
+            // Remove active class from all tabs and contents
+            tabs.forEach(t => t.classList.remove('active'));
+            tabContents.forEach(content => content.classList.remove('active'));
+            
+            // Add active class to clicked tab and corresponding content
+            tab.classList.add('active');
+            document.getElementById(targetTab).classList.add('active');
+        });
+    });
 </script>
 
 <script type="module">
     let trainsData = [];
     let stations = [];
-    
+
     const nickToTrainMap = new Map();
     const trainToNickMap = new Map();
 
@@ -230,10 +322,10 @@
         try {
             const response = await fetch('https://stacjownik.spythere.eu/api/getActiveData');
             if (!response.ok) throw new Error('Błąd API');
-            
+
             const data = await response.json();
             trainsData = data.trains;
-            
+
             const maszynisciMap = new Map();
             trainsData.forEach(train => { 
                 if (train.driverName) maszynisciMap.set(train.driverName, train); 
@@ -265,7 +357,6 @@
 
                     const optTrain = document.createElement('option');
                     optTrain.value = trainNoStr;
-                    // USUNIĘTO: optTrain.label = name; - teraz wyświetla tylko numer
                     dlTrains.appendChild(optTrain);
 
                     nickToTrainMap.set(name, trainNoStr);
@@ -296,6 +387,24 @@
         }
     }
 
+    function loadStations() {
+        const stationSelect = document.getElementById('station-select');
+        const stationDatalist = document.getElementById('list-stations');
+        
+        const stationNames = Object.keys(BAZA_OSTRZEZEN).sort((a, b) => a.localeCompare(b, 'pl'));
+        
+        stationNames.forEach(stationName => {
+            const option = document.createElement('option');
+            option.value = stationName;
+            option.textContent = stationName;
+            stationSelect.appendChild(option);
+            
+            const datalistOption = document.createElement('option');
+            datalistOption.value = stationName;
+            stationDatalist.appendChild(datalistOption);
+        });
+    }
+
     const searchNickInput = document.getElementById('search-nick');
     const searchTrainInput = document.getElementById('search-train');
     const mainSelect = document.getElementById('maszynista');
@@ -318,19 +427,40 @@
             searchNickInput.value = "";
         }
     });
-    
+
     mainSelect.addEventListener('change', () => {
         updateStacjeFromMaszynista();
         searchNickInput.value = "";
         searchTrainInput.value = "";
     });
 
+    // Station tab functionality
+    const searchStationInput = document.getElementById('search-station');
+    const stationSelect = document.getElementById('station-select');
+
+    searchStationInput.addEventListener('input', (e) => {
+        const val = e.target.value;
+        const matchingStation = Object.keys(BAZA_OSTRZEZEN).find(station => 
+            normalizuj(station).includes(normalizuj(val))
+        );
+        
+        if (matchingStation) {
+            stationSelect.value = matchingStation;
+            generujWOSDlaStacji();
+        }
+    });
+
+    stationSelect.addEventListener('change', () => {
+        generujWOSDlaStacji();
+        searchStationInput.value = "";
+    });
+
     function updateStacjeFromMaszynista() {
-        const selectedDriver = document.getElementById('maszynista').value;
+        const selectedDriver = document.getElementById("maszynista").value;
         if (!selectedDriver) return;
 
         const train = trainsData.filter(t => t.driverName === selectedDriver).find(t => t.timetable?.path);
-        
+
         if (!train || !train.timetable?.path) {
             document.getElementById("wynik").innerHTML = "";
             return;
@@ -350,7 +480,80 @@
         document.getElementById('printButton').disabled = false;
     }
 
-    document.addEventListener('DOMContentLoaded', loadMaszynisci);
+    function generujWOSDlaStacji() {
+        const selectedStation = document.getElementById('station-select').value;
+        if (!selectedStation) {
+            document.getElementById("wynik").innerHTML = "";
+            document.getElementById('station-printButton').disabled = true;
+            return;
+        }
+
+        const klucz = Object.keys(BAZA_OSTRZEZEN).find(k => normalizuj(k) === normalizuj(selectedStation));
+        if (!klucz) {
+            document.getElementById("wynik").innerHTML = "<p>Brak danych dla wybranej stacji.</p>";
+            document.getElementById('station-printButton').disabled = true;
+            return;
+        }
+
+        let lp = 1;
+        let html = `
+        <h1 style="margin:0 0 12px; font-size:15pt; text-align:center; color: var(--text-color);">
+            Wykaz Ostrzeżeń Stałych<br>
+            oraz prędkości drogowych
+        </h1>
+        <span style="float:right;">Godzina wydruku: <b>${new Date().toLocaleTimeString('pl-PL')}</b></span>
+        <span><br><br></span>
+        <span>Wygenerowano dla stacji: <b>${klucz}</b></span>
+
+        <table class="wos-table">
+          <thead>
+            <tr>
+              <th style="width: 3em;">Lp.</th>
+              <th colspan="2">Lokalizacja</th>
+              <th style="width: 36%;">Przyczyna</th>
+              <th style="width: 3.5em;">Tor</th>
+              <th colspan="2">Prędkość</th>
+              <th style="width: 24%;">Uwagi</th>
+            </tr>
+            <tr>
+              <th></th>
+              <th>od km</th>
+              <th>do km</th>
+              <th></th>
+              <th></th>
+              <th>niep.</th>
+              <th>parz.</th>
+              <th></th>
+            </tr>
+          </thead>
+          <tbody>`;
+
+        html += `<tr><td colspan="8" class="station-header">${klucz}</td></tr>`;
+        const dane = [...BAZA_OSTRZEZEN[klucz]].sort((a,b) => parseFloat(a[0] || a[1] || 0) - parseFloat(b[0] || b[1] || 0));
+
+        dane.forEach(([od, doo, przyczyna, tor, vNiep, vPar, uwagi]) => {
+            html += `
+            <tr>
+              <td>${lp++}</td>
+              <td>${formatKm(od)}</td>
+              <td>${formatKm(doo)}</td>
+              <td style="text-align:left;">${przyczyna || '—'}</td>
+              <td>${tor || '—'}</td>
+              <td>${vNiep || '—'}</td>
+              <td>${vPar || '—'}</td>
+              <td style="text-align:left;">${uwagi || '—'}</td>
+            </tr>`;
+        });
+
+        html += "</tbody></table>";
+        document.getElementById("wynik").innerHTML = html;
+        document.getElementById('station-printButton').disabled = false;
+    }
+
+    document.addEventListener('DOMContentLoaded', () => {
+        loadMaszynisci();
+        loadStations();
+    });
 
     function normalizuj(nazwa) {
         return (nazwa || "").trim().toLowerCase()
@@ -427,7 +630,7 @@
 </script>
 <span style="float: right;">© Blue & Kacper9 & bagi2424</span><br><br>
 <section class="no-print">
-    <span style="float: right;">version 1.0.0</span><br><br>
+    <span style="float: right;">version 1.1.0</span><br><br>
     <span style="float: right; font-size: 0.8em;">Dane pobierane za pośrednictwem API: <a href="https://stacjownik-td2.spythere.eu">Stacjownik</a></span>
 </section>
 </body>
