@@ -61,7 +61,7 @@
             position: relative;
         }
         
-        input, textarea, select { 
+        select { 
             width: 100%; 
             padding: 10px; 
             margin: 10px 0 15px; 
@@ -163,12 +163,8 @@
 <script>
     const toggleBtn = document.getElementById('theme-toggle-btn');
     const body = document.body;
-
     const savedTheme = localStorage.getItem('wos_theme');
-    if (savedTheme === 'dark') {
-        body.classList.add('dark-mode');
-        toggleBtn.textContent = '☀️';
-    }
+    if (savedTheme === 'dark') { body.classList.add('dark-mode'); toggleBtn.textContent = '☀️'; }
 
     toggleBtn.addEventListener('click', () => {
         body.classList.toggle('dark-mode');
@@ -190,31 +186,34 @@
         const select = document.getElementById('maszynista');
         try {
             const response = await fetch('https://stacjownik.spythere.eu/api/getActiveData');
-            if (!response.ok) throw new Error('Błąd pobierania danych z API');
+            if (!response.ok) throw new Error('Błąd API');
             
             const data = await response.json();
             trainsData = data.trains;
             
-            const maszynisciSet = new Set();
-            trainsData.forEach(train => { if (train.driverName) maszynisciSet.add(train.driverName); });
+            const maszynisciMap = new Map();
+            trainsData.forEach(train => { 
+                if (train.driverName) maszynisciMap.set(train.driverName, train); 
+            });
 
-            const allMaszynisci = Array.from(maszynisciSet).sort((a, b) => a.localeCompare(b, 'pl'));
+            const sortedNames = Array.from(maszynisciMap.keys()).sort((a, b) => a.localeCompare(b, 'pl'));
 
-            // Podział na dwie grupy
-            const zRozkladem = allMaszynisci.filter(name => 
-                trainsData.filter(t => t.driverName === name).some(t => t.timetable?.path)
-            );
-            const bezRozkladu = allMaszynisci.filter(name => !zRozkladem.includes(name));
+            const zRozkladem = sortedNames.filter(name => {
+                const t = maszynisciMap.get(name);
+                return t.timetable && t.timetable.path;
+            });
+            const bezRozkladu = sortedNames.filter(name => !zRozkladem.includes(name));
 
-            // Dodaj maszynistów z rozkładem
+            // Dodaj maszynistów z rozkładem w formacie: Nick | Numer
             zRozkladem.forEach(name => {
+                const train = maszynisciMap.get(name);
+                const trainNo = train.trainNo || "???";
                 const option = document.createElement('option');
                 option.value = name;
-                option.textContent = name;
+                option.textContent = `${name} | ${trainNo}`;
                 select.appendChild(option);
             });
 
-            // Dodaj separator jeśli są obie grupy
             if (zRozkladem.length > 0 && bezRozkladu.length > 0) {
                 const separator = document.createElement('option');
                 separator.disabled = true;
@@ -222,12 +221,11 @@
                 select.appendChild(separator);
             }
 
-            // Dodaj maszynistów bez rozkładu
             bezRozkladu.forEach(name => {
                 const option = document.createElement('option');
                 option.value = name;
-                option.textContent = name + " (brak danych trasy)";
-                option.disabled = true; // Zablokowane, bo i tak nie wygenerują WOS
+                option.textContent = `${name} (brak danych trasy)`;
+                option.disabled = true;
                 select.appendChild(option);
             });
 
@@ -246,7 +244,7 @@
         const train = trainsData.filter(t => t.driverName === selectedDriver).find(t => t.timetable?.path);
         
         if (!train || !train.timetable?.path) {
-            alert('Brak danych trasy dla wybranego maszynisty.');
+            alert('Brak danych trasy.');
             document.getElementById('maszynista').value = '';
             document.getElementById('printButton').disabled = true;
             document.getElementById("wynik").innerHTML = "";
@@ -280,11 +278,7 @@
     function generujWOS() {
         const maszynista = document.getElementById("maszynista").value || "—";
         const input = stations.trim();
-
-        if (input.length === 0) {
-            document.getElementById("wynik").innerHTML = '<p style="text-align:center; color: var(--text-color); margin-top:30px; font-size:14pt;"><b>Brak rozkładu jazdy</b></p>';
-            return;
-        }
+        if (input.length === 0) return;
 
         const wpisy = input.split(/[,;]\s*/).map(s => s.trim());
         let lp = 1;
@@ -344,10 +338,9 @@
         });
 
         html += "</tbody></table>";
-        if (lp === 1) html += '<p style="text-align:center; color:red; margin-top:30px;"><b>Brak WOS dla danego rozkładu</b></p>';
         document.getElementById("wynik").innerHTML = html;
     }
 </script>
-<span style="float: right;">© Blue & Kacper9</span>
+<span style="float: right;">© Blue & Kacper9 & bagi2424</span>
 </body>
 </html>
