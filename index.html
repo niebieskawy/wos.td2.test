@@ -5,57 +5,126 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <title>WOS TD2 - Generator ostrzeżeń stałych</title>
     <style>
+        /* --- DEFINICJA ZMIENNYCH KOLORYSTYCZNYCH --- */
+        :root {
+            /* Motyw JASNY (Domyślny) */
+            --bg-body: #f9f9f9;
+            --bg-container: #ffffff;
+            --text-color: #000000;
+            --text-heading: #0d47a1;
+            --border-color: #666666;
+            --border-light: #aaaaaa;
+            --input-bg: #ffffff;
+            --btn-bg: #0d47a1;
+            --btn-hover: #1565c0;
+            --btn-text: #ffffff;
+            
+            /* Tabela */
+            --table-border: #000000;
+            --th-bg: #e8e8e8;
+            --station-header-bg: #fffacd;
+            --station-header-text: #000000;
+        }
+
+        body.dark-mode {
+            /* Motyw CIEMNY */
+            --bg-body: #121212;
+            --bg-container: #1e1e1e;
+            --text-color: #e0e0e0;
+            --text-heading: #64b5f6;
+            --border-color: #555555;
+            --border-light: #444444;
+            --input-bg: #2d2d2d;
+            --btn-bg: #64b5f6;
+            --btn-hover: #42a5f5;
+            --btn-text: #000000;
+
+            /* Tabela Ciemna */
+            --table-border: #555555;
+            --th-bg: #333333;
+            --station-header-bg: #4a4a2a; /* Ciemny żółty/oliwkowy */
+            --station-header-text: #e0e0e0;
+        }
+
+        /* --- STYLOWANIE --- */
         body { 
             font-family: Arial, Helvetica, sans-serif; 
             margin: 20px; 
-            background: #f9f9f9; 
-            color: #000; 
+            background: var(--bg-body); 
+            color: var(--text-color); 
+            transition: background 0.3s, color 0.3s;
         }
-        h1 { color: #0d47a1; text-align: center; margin-bottom: 0.4em; }
+        h1 { color: var(--text-heading); text-align: center; margin-bottom: 0.4em; }
+        
         .container { 
-            background: white; 
+            background: var(--bg-container); 
             padding: 20px; 
-            border: 1px solid #aaa; 
+            border: 1px solid var(--border-light); 
             max-width: 1500px; 
             margin: 0 auto 30px;
             box-shadow: 0 2px 10px rgba(0,0,0,0.15);
+            transition: background 0.3s, border-color 0.3s;
+            position: relative; /* Dla pozycjonowania przycisku */
         }
+        
         input, textarea, select { 
             width: 100%; 
             padding: 10px; 
             margin: 10px 0 15px; 
-            border: 1px solid #666; 
+            border: 1px solid var(--border-color); 
             border-radius: 4px; 
             font-family: monospace; 
             font-size: 1.05em;
+            background: var(--input-bg);
+            color: var(--text-color);
         }
+
         button { 
             padding: 10px 22px; 
             margin: 0 10px 10px 0; 
-            background: #0d47a1; 
-            color: white; 
+            background: var(--btn-bg); 
+            color: var(--btn-text); 
             border: none; 
             border-radius: 4px; 
             cursor: pointer; 
             font-weight: bold;
+            transition: background 0.2s;
         }
-        button:hover { background: #1565c0; }
+        button:hover { background: var(--btn-hover); }
+        button:disabled { background: #555; cursor: not-allowed; opacity: 0.7; }
+
+        /* Specjalny styl dla przycisku motywu */
+        #theme-toggle-btn {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            padding: 8px 12px;
+            font-size: 0.9em;
+            background: transparent;
+            border: 1px solid var(--border-color);
+            color: var(--text-color);
+        }
+        #theme-toggle-btn:hover {
+            background: var(--th-bg);
+        }
 
         .wos-table {
             width: 100%;
             border-collapse: collapse;
             font-size: 9.5pt;
             margin-top: 12px;
+            color: var(--text-color);
         }
         .wos-table th, .wos-table td {
-            border: 1px solid black;
+            border: 1px solid var(--table-border);
             padding: 4px 6px;
             text-align: center;
             vertical-align: middle;
         }
-        .wos-table th { background-color: #e8e8e8; font-weight: bold; }
+        .wos-table th { background-color: var(--th-bg); font-weight: bold; }
         .wos-table .station-header {
-            background-color: #fffacd;
+            background-color: var(--station-header-bg);
+            color: var(--station-header-text);
             font-size: 11pt;
             font-weight: bold;
             text-align: left;
@@ -69,16 +138,32 @@
         .wos-table .col-v      { width: 6.5em; }
         .wos-table .col-uwagi  { width: 24%; text-align: left; }
 
+        a { color: var(--text-heading); }
+
         @media print {
             .no-print { display: none !important; }
-            body { margin: 0; background: white; }
-            .container { border: none; box-shadow: none; padding: 0; margin: 0; }
+            body { margin: 0; background: white !important; color: black !important; }
+            .container { border: none; box-shadow: none; padding: 0; margin: 0; background: white !important; }
+            
+            /* Reset zmiennych dla druku - wymuszenie bieli i czerni */
+            :root, body.dark-mode {
+                --text-color: black;
+                --text-heading: black;
+                --table-border: black;
+                --th-bg: #e8e8e8;
+                --station-header-bg: #fffacd;
+                --station-header-text: black;
+            }
+            h1 { color: black !important; }
+            .wos-table { color: black !important; }
         }
     </style>
 </head>
 <body>
 
 <div class="container no-print">
+    <button id="theme-toggle-btn">🌙</button>
+
     <h1>Wykaz Ostrzeżeń Stałych (WOS) – TD2</h1>
     
     <label for="maszynista">Maszynista:</label>
@@ -96,6 +181,31 @@
 </div>
     
 <script src="baza.js"></script>
+
+<script>
+    const toggleBtn = document.getElementById('theme-toggle-btn');
+    const body = document.body;
+
+    // Sprawdź zapisany motyw
+    const savedTheme = localStorage.getItem('wos_theme');
+    if (savedTheme === 'dark') {
+        body.classList.add('dark-mode');
+        toggleBtn.textContent = '☀️';
+    }
+
+    toggleBtn.addEventListener('click', () => {
+        body.classList.toggle('dark-mode');
+        
+        if (body.classList.contains('dark-mode')) {
+            localStorage.setItem('wos_theme', 'dark');
+            toggleBtn.textContent = '☀️';
+        } else {
+            localStorage.setItem('wos_theme', 'light');
+            toggleBtn.textContent = '🌙';
+        }
+    });
+</script>
+
 <script type="module">
  
     let trainsData = [];
@@ -194,7 +304,7 @@
         console.log('Generowanie WOS dla maszynisty:', maszynista);
         console.log('Stacje do przetworzenia:', input);
         if (input.length === 0) {
-            document.getElementById("wynik").innerHTML = '<p style="text-align:center; color:#c00; margin-top:30px; font-size:14pt;"><b>Brak rozkładu jazdy</b></p>';
+            document.getElementById("wynik").innerHTML = '<p style="text-align:center; color: var(--text-color); margin-top:30px; font-size:14pt;"><b>Brak rozkładu jazdy</b></p>';
             return;
         }
 
@@ -202,7 +312,7 @@
         let lp = 1;
 
         let html = `
-        <h1 style="margin:0 0 12px; font-size:15pt; text-align:center; color: black;">
+        <h1 style="margin:0 0 12px; font-size:15pt; text-align:center; color: var(--text-color);">
             Wykaz Ostrzeżeń Stałych<br>
             oraz prędkości drogowych na torach głównych zasadniczych
         </h1>
@@ -264,7 +374,7 @@
         html += "</tbody></table>";
 
         if (lp === 1) {
-            html += '<p style="text-align:center; color:#c00; margin-top:30px; font-size:14pt;"><b>Brak WOS dla danego rozkładu</b></p>';
+            html += '<p style="text-align:center; color:red; margin-top:30px; font-size:14pt;"><b>Brak WOS dla danego rozkładu</b></p>';
         }
 
         document.getElementById("wynik").innerHTML = html;
