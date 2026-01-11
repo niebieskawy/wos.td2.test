@@ -71,10 +71,9 @@
             font-size: 1.05em;
             background: var(--input-bg);
             color: var(--text-color);
-            box-sizing: border-box; /* Ważne dla paddingu */
+            box-sizing: border-box; 
         }
 
-        /* Styl dla kontenera wyszukiwania */
         .search-row {
             display: flex;
             gap: 15px;
@@ -153,7 +152,6 @@
             }
         }
         
-        /* Responsywność wyszukiwarki na małych ekranach */
         @media (max-width: 600px) {
             .search-row { flex-direction: column; gap: 0; }
         }
@@ -217,7 +215,7 @@
     let trainsData = [];
     let stations = [];
     
-    // Mapy pomocnicze do szybkiego wyszukiwania
+    // Mapy pomocnicze
     const nickToTrainMap = new Map();
     const trainToNickMap = new Map();
 
@@ -246,7 +244,6 @@
             });
             const bezRozkladu = sortedNames.filter(name => !zRozkladem.includes(name));
 
-            // Wypełnianie list i podpowiedzi
             zRozkladem.forEach(name => {
                 const train = maszynisciMap.get(name);
                 const trainNo = train.trainNo || "???";
@@ -264,15 +261,17 @@
 
                 // Datalist: Numery pociągów
                 if (train.trainNo) {
+                    // NAPRAWA: Konwersja numeru na String, aby pasował do input type="text"
+                    const trainNoStr = String(train.trainNo).trim();
+
                     const optTrain = document.createElement('option');
-                    optTrain.value = train.trainNo;
-                    // Opcjonalnie: dodaj info o nicku w label, ale value musi być numerem dla inputu
+                    optTrain.value = trainNoStr;
                     optTrain.label = name; 
                     dlTrains.appendChild(optTrain);
 
-                    // Zapisz mapowania
-                    nickToTrainMap.set(name, train.trainNo);
-                    trainToNickMap.set(train.trainNo, name);
+                    nickToTrainMap.set(name, trainNoStr);
+                    // Klucz mapy musi być stringiem
+                    trainToNickMap.set(trainNoStr, name);
                 }
             });
 
@@ -308,29 +307,24 @@
     // 1. Szukanie po Nicku
     searchNickInput.addEventListener('input', (e) => {
         const val = e.target.value;
-        // Sprawdź czy wpisana wartość to poprawny nick z listy (z rozkładem)
         if (nickToTrainMap.has(val)) {
             mainSelect.value = val;
             updateStacjeFromMaszynista();
-            // Czyść drugie pole, żeby nie myliło
             searchTrainInput.value = "";
         }
     });
 
     // 2. Szukanie po Numerze Pociągu
     searchTrainInput.addEventListener('input', (e) => {
-        const val = e.target.value;
-        // Sprawdź czy wpisana wartość to poprawny numer pociągu
+        const val = e.target.value.trim(); // Trim usuwa przypadkowe spacje
         if (trainToNickMap.has(val)) {
             const driverName = trainToNickMap.get(val);
             mainSelect.value = driverName;
             updateStacjeFromMaszynista();
-            // Czyść drugie pole
             searchNickInput.value = "";
         }
     });
     
-    // Obsługa zmiany w głównym select (żeby wyczyścić wyszukiwarki)
     mainSelect.addEventListener('change', () => {
         updateStacjeFromMaszynista();
         searchNickInput.value = "";
@@ -346,7 +340,6 @@
         const train = trainsData.filter(t => t.driverName === selectedDriver).find(t => t.timetable?.path);
         
         if (!train || !train.timetable?.path) {
-            // Jeśli wybrano kogoś bez trasy (teoretycznie zablokowane, ale dla pewności)
             document.getElementById("wynik").innerHTML = "";
             return;
         }
@@ -441,5 +434,6 @@
     }
 </script>
 <span style="float: right;">© Blue & Kacper9 & bagi2424</span>
+<span style="float: right;">Version: 1.0.0</span>
 </body>
 </html>
