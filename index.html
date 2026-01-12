@@ -4,51 +4,8 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     
-    <!-- RODO Consent Banner -->
-    <div id="rodo-banner" style="position: fixed; bottom: 0; left: 0; right: 0; background: #333; color: white; padding: 15px; text-align: center; z-index: 9999; display: none;">
-        <p style="margin: 0 0 10px 0;">
-            📊 Ta strona używa analityki do celów statystycznych. 
-            Kontynuując przeglądanie, zgadzasz się na przetwarzanie danych.
-        </p>
-        <button onclick="acceptAnalytics()" style="background: #4CAF50; color: white; border: none; padding: 8px 16px; margin: 0 5px; cursor: pointer;">
-            Akceptuję
-        </button>
-        <button onclick="rejectAnalytics()" style="background: #f44336; color: white; border: none; padding: 8px 16px; margin: 0 5px; cursor: pointer;">
-            Odrzucam
-        </button>
-    </div>
-
-    <!-- Umami Analytics (załadowany tylko po zgodzie) -->
-    <script>
-        function loadAnalytics() {
-            const script = document.createElement('script');
-            script.defer = true;
-            script.src = 'https://cloud.umami.is/script.js';
-            script.setAttribute('data-website-id', '0b96c829-a037-4b08-93d8-b56a166dd79b');
-            document.head.appendChild(script);
-        }
-        
-        function acceptAnalytics() {
-            localStorage.setItem('analytics-consent', 'accepted');
-            document.getElementById('rodo-banner').style.display = 'none';
-            loadAnalytics();
-        }
-        
-        function rejectAnalytics() {
-            localStorage.setItem('analytics-consent', 'rejected');
-            document.getElementById('rodo-banner').style.display = 'none';
-        }
-        
-        // Sprawdź zgodę przy ładowaniu
-        window.addEventListener('DOMContentLoaded', () => {
-            const consent = localStorage.getItem('analytics-consent');
-            if (!consent) {
-                document.getElementById('rodo-banner').style.display = 'block';
-            } else if (consent === 'accepted') {
-                loadAnalytics();
-            }
-        });
-    </script>
+    <!-- Umami Analytics -->
+    <script defer src="https://cloud.umami.is/script.js" data-website-id="0b96c829-a037-4b08-93d8-b56a166dd79b"></script>
     
     <title>WOS TD2 - Generator ostrzeżeń stałych</title>
     <style>
