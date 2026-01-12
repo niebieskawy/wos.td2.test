@@ -753,9 +753,9 @@
         loadMaszynisci();
         loadStations();
         
-        // Ustaw domyślny serwer na PL2 (cae)
+        // Ustaw domyślny serwer na PL1 (eu)
         const serverSelect = document.getElementById('server-select');
-        serverSelect.value = 'cae';
+        serverSelect.value = 'eu';
         
         // Dodaj prosty event listener dla zmiany serwera
         serverSelect.addEventListener('change', async () => {
