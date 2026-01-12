@@ -237,6 +237,16 @@
 
     <h1>Wykaz Ostrzeżeń Stałych (WOS) – TD2</h1>
 
+    <!-- Server selector -->
+    <div style="margin-bottom: 20px; text-align: center;">
+        <label for="server-select" style="font-weight: bold; margin-right: 10px;">Wybierz serwer:</label>
+        <select id="server-select" style="width: auto; display: inline-block;">
+            <option value="eu">PL1</option>
+            <option value="cae">PL2</option>
+            <option value="ru">EN</option>
+        </select>
+    </div>
+
     <!-- Tab navigation -->
     <div class="tabs">
         <div class="tab active" data-tab="train-tab">WOS dla pociągu</div>
@@ -428,7 +438,7 @@
     }
 </script>
 
-<script type="module">
+<script>
     let trainsData = [];
     let stations = [];
 
@@ -440,6 +450,12 @@
         const dlNicks = document.getElementById('list-nicks');
         const dlTrains = document.getElementById('list-trains');
         const saveCheckbox = document.getElementById('save-last-driver');
+        const serverSelect = document.getElementById('server-select');
+
+        // Wyczyść select na początku
+        select.innerHTML = '<option value="">-- Wybierz maszynistę --</option>';
+        dlNicks.innerHTML = '';
+        dlTrains.innerHTML = '';
 
         nickToTrainMap.clear();
         trainToNickMap.clear();
@@ -449,7 +465,28 @@
             if (!response.ok) throw new Error('Błąd API');
 
             const data = await response.json();
-            trainsData = data.trains;
+            
+            // Filtruj dane na podstawie wybranego serwera
+            const selectedServer = serverSelect.value;
+            let filteredTrains = data.trains;
+            
+            // Mapowanie serwerów na regiony API
+            const serverRegionMap = {
+                'eu': 'eu',      // PL1
+                'cae': 'cae',    // PL2
+                'ru': 'ru'       // EN
+            };
+            
+            const targetRegion = serverRegionMap[selectedServer];
+            
+            if (targetRegion) {
+                filteredTrains = data.trains.filter(train => train.region === targetRegion);
+                console.log(`Filtruję dane dla serwera ${selectedServer} (region ${targetRegion}): ${filteredTrains.length} pociągów`);
+            } else {
+                console.log(`Serwer ${selectedServer} nie ma odpowiednika w API, używam wszystkich danych`);
+            }
+            
+            trainsData = filteredTrains;
 
             const maszynisciMap = new Map();
             trainsData.forEach(train => { 
@@ -594,19 +631,8 @@
         }
     });
 
-    window.loadMaszynisciModule = loadMaszynisci;
-    
-    const updateTrainsDataExport = () => {
-        window.trainsDataModule = trainsData;
-    };
-    
-    updateTrainsDataExport();
-    
-    const originalLoadMaszynisci = loadMaszynisci;
-    window.loadMaszynisciModule = async function() {
-        await originalLoadMaszynisci();
-        updateTrainsDataExport();
-    };
+    // Eksportuj dane dla innych funkcji
+    window.trainsDataModule = trainsData;
 
     const searchStationInput = document.getElementById('search-station');
     const stationSelect = document.getElementById('station-select');
@@ -726,6 +752,27 @@
     document.addEventListener('DOMContentLoaded', () => {
         loadMaszynisci();
         loadStations();
+        
+        // Ustaw domyślny serwer na PL2 (cae)
+        const serverSelect = document.getElementById('server-select');
+        serverSelect.value = 'cae';
+        
+        // Dodaj prosty event listener dla zmiany serwera
+        serverSelect.addEventListener('change', async () => {
+            console.log('Zmieniono serwer na:', serverSelect.value);
+            
+            try {
+                await loadMaszynisci();
+                window.trainsDataModule = trainsData;
+                console.log('Dane załadowane pomyślnie');
+            } catch (error) {
+                console.error('Błąd ładowania danych:', error);
+                document.getElementById('maszynista').innerHTML = '<option value="">-- Błąd ładowania --</option>';
+            }
+        });
+        
+        // Załaduj dane dla domyślnego serwera
+        loadMaszynisci();
     });
 
     function normalizuj(nazwa) {
