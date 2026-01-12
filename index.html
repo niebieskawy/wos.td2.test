@@ -4,14 +4,50 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     
-    <!-- Google tag (gtag.js) -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-60L8K0BFGL"></script>
-    <script>
-      window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
-      gtag('js', new Date());
+    <!-- RODO Consent Banner -->
+    <div id="rodo-banner" style="position: fixed; bottom: 0; left: 0; right: 0; background: #333; color: white; padding: 15px; text-align: center; z-index: 9999; display: none;">
+        <p style="margin: 0 0 10px 0;">
+            📊 Ta strona używa analityki do celów statystycznych. 
+            Kontynuując przeglądanie, zgadzasz się na przetwarzanie danych.
+        </p>
+        <button onclick="acceptAnalytics()" style="background: #4CAF50; color: white; border: none; padding: 8px 16px; margin: 0 5px; cursor: pointer;">
+            Akceptuję
+        </button>
+        <button onclick="rejectAnalytics()" style="background: #f44336; color: white; border: none; padding: 8px 16px; margin: 0 5px; cursor: pointer;">
+            Odrzucam
+        </button>
+    </div>
 
-      gtag('config', 'G-Q64CNY6BM7');
+    <!-- Umami Analytics (załadowany tylko po zgodzie) -->
+    <script>
+        function loadAnalytics() {
+            const script = document.createElement('script');
+            script.defer = true;
+            script.src = 'https://cloud.umami.is/script.js';
+            script.setAttribute('data-website-id', '0b96c829-a037-4b08-93d8-b56a166dd79b');
+            document.head.appendChild(script);
+        }
+        
+        function acceptAnalytics() {
+            localStorage.setItem('analytics-consent', 'accepted');
+            document.getElementById('rodo-banner').style.display = 'none';
+            loadAnalytics();
+        }
+        
+        function rejectAnalytics() {
+            localStorage.setItem('analytics-consent', 'rejected');
+            document.getElementById('rodo-banner').style.display = 'none';
+        }
+        
+        // Sprawdź zgodę przy ładowaniu
+        window.addEventListener('DOMContentLoaded', () => {
+            const consent = localStorage.getItem('analytics-consent');
+            if (!consent) {
+                document.getElementById('rodo-banner').style.display = 'block';
+            } else if (consent === 'accepted') {
+                loadAnalytics();
+            }
+        });
     </script>
     
     <title>WOS TD2 - Generator ostrzeżeń stałych</title>
@@ -446,7 +482,6 @@
         const dlTrains = document.getElementById('list-trains');
         const saveCheckbox = document.getElementById('save-last-driver');
 
-        // Wyczyść mapy przed załadowaniem nowych danych
         nickToTrainMap.clear();
         trainToNickMap.clear();
 
@@ -510,18 +545,15 @@
                 select.appendChild(option);
             });
 
-            // Sprawdź czy jest zapisany ostatni maszynista
             const savedDriver = localStorage.getItem('wos_last_driver');
             if (savedDriver) {
                 const savedDriverTrain = maszynisciMap.get(savedDriver);
                 
                 if (savedDriverTrain && savedDriverTrain.timetable && savedDriverTrain.timetable.path) {
-                    // Maszynista jest aktywny - ustaw go i zaznacz checkbox
                     select.value = savedDriver;
                     saveCheckbox.checked = true;
                     updateStacjeFromMaszynista();
                 } else if (maszynisciMap.has(savedDriver)) {
-                    // Maszynista istnieje ale nie ma aktywnego rozkładu
                     saveCheckbox.checked = true;
                     document.getElementById("wynik").innerHTML = `
                         <div class="warning-message">
@@ -530,7 +562,6 @@
                         </div>
                     `;
                 } else {
-                    // Maszynista nie istnieje - usuń z localStorage
                     localStorage.removeItem('wos_last_driver');
                 }
             }
@@ -589,7 +620,6 @@
         searchNickInput.value = "";
         searchTrainInput.value = "";
         
-        // Zapisz ostatniego maszynistę jeśli checkbox jest zaznaczony
         const saveCheckbox = document.getElementById('save-last-driver');
         if (saveCheckbox.checked && mainSelect.value) {
             localStorage.setItem('wos_last_driver', mainSelect.value);
@@ -599,33 +629,26 @@
     // Obsługa checkboxa zapisywania
     document.getElementById('save-last-driver').addEventListener('change', (e) => {
         if (!e.target.checked) {
-            // Usuń zapisanego maszynistę jeśli odznaczono
             localStorage.removeItem('wos_last_driver');
         } else if (mainSelect.value) {
-            // Zapisz aktualnego maszynistę jeśli zaznaczono
             localStorage.setItem('wos_last_driver', mainSelect.value);
         }
     });
 
-    // Eksportuj funkcję loadMaszynisci i dane do globalnego scope
     window.loadMaszynisciModule = loadMaszynisci;
     
-    // Aktualizuj eksport danych po każdym załadowaniu
     const updateTrainsDataExport = () => {
         window.trainsDataModule = trainsData;
     };
     
-    // Inicjalny eksport danych
     updateTrainsDataExport();
     
-    // Wywołaj po załadowaniu danych
     const originalLoadMaszynisci = loadMaszynisci;
     window.loadMaszynisciModule = async function() {
         await originalLoadMaszynisci();
         updateTrainsDataExport();
     };
 
-    // Station tab functionality
     const searchStationInput = document.getElementById('search-station');
     const stationSelect = document.getElementById('station-select');
 
@@ -821,7 +844,7 @@
 </script>
 <span style="float: right;">© Blue & Kacper9 & bagi2424</span><br><br>
 <section class="no-print">
-    <span style="float: right;">version 1.4.0</span><br><br>
+    <span style="float: right;">version 1.1.0</span><br><br>
     <span style="float: right; font-size: 0.8em;">Dane pobierane za pośrednictwem API: <a href="https://stacjownik-td2.spythere.eu">Stacjownik</a></span>
 </section>
 </body>
