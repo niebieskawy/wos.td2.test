@@ -806,7 +806,12 @@
             </h1>
             <span style="float:right;">Godzina wydruku: <b>${new Date().toLocaleTimeString('pl-PL')}</b></span>
             <span><br><br></span>
-            <span>Wygenerowano dla pociągu: <b>${trainsData.filter(t => t.driverName === maszynista).find(t => t.timetable?.path)?.trainNo || '—'}</b></span>
+            <span>Wygenerowano dla pociągu: <b>${(() => {
+                const train = trainsData.filter(t => t.driverName === maszynista).find(t => t.timetable?.path);
+                const category = train?.timetable?.category || '';
+                const trainNo = train?.trainNo || '—';
+                return category ? `${category} ${trainNo}` : trainNo;
+            })()}</b></span>
             
             <div class="warning-message" style="margin: 20px 0; text-align: center; font-size: 1.1em;">
                 <strong>ℹ️ Brak WOS dla danego rozkładu jazdy</strong><br>
@@ -825,7 +830,12 @@
         </h1>
         <span style="float:right;">Godzina wydruku: <b>${new Date().toLocaleTimeString('pl-PL')}</b></span>
         <span><br><br></span>
-        <span>Wygenerowano dla pociągu: <b>${trainsData.filter(t => t.driverName === maszynista).find(t => t.timetable?.path)?.trainNo || '—'}</b></span>
+        <span>Wygenerowano dla pociągu: <b>${(() => {
+                const train = trainsData.filter(t => t.driverName === maszynista).find(t => t.timetable?.path);
+                const category = train?.timetable?.category || '';
+                const trainNo = train?.trainNo || '—';
+                return category ? `${category} ${trainNo}` : trainNo;
+            })()}</b></span>
 
         <table class="wos-table">
           <thead>
