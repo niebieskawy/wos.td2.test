@@ -1,15 +1,14 @@
 <!DOCTYPE html>
 <html lang="pl">
+
 <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    <script src="password-protect.js"></script> 
-    
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
     <!-- Umami Analytics -->
-    <script defer src="https://cloud.umami.is/script.js" 
-            data-website-id="0b96c829-a037-4b08-93d8-b56a166dd79b"
-            data-do-not-track="true"></script>
-    
+    <script defer src="https://cloud.umami.is/script.js" data-website-id="0b96c829-a037-4b08-93d8-b56a166dd79b"
+        data-do-not-track="true"></script>
+
     <title>WOS TD2 - Generator ostrzeżeń stałych</title>
     <style>
         :root {
@@ -49,46 +48,54 @@
 
             --table-border: #555555;
             --th-bg: #333333;
-            --station-header-bg: #4a4a2a; 
+            --station-header-bg: #4a4a2a;
             --station-header-text: #e0e0e0;
             --tab-bg: #2a2a2a;
             --tab-active: #64b5f6;
             --tab-hover: #3a3a3a;
         }
 
-        body { 
-            font-family: Arial, Helvetica, sans-serif; 
-            margin: 20px; 
-            background: var(--bg-body); 
-            color: var(--text-color); 
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            margin: 20px;
+            background: var(--bg-body);
+            color: var(--text-color);
             transition: background 0.3s, color 0.3s;
         }
-        h1 { color: var(--text-heading); text-align: center; margin-bottom: 0.4em; }
 
-        a { color: var(--link-text);}
+        h1 {
+            color: var(--text-heading);
+            text-align: center;
+            margin-bottom: 0.4em;
+        }
 
-        .container { 
-            background: var(--bg-container); 
-            padding: 20px; 
-            border: 1px solid var(--border-light); 
-            max-width: 1500px; 
+        a {
+            color: var(--link-text);
+        }
+
+        .container {
+            background: var(--bg-container);
+            padding: 20px;
+            border: 1px solid var(--border-light);
+            max-width: 1500px;
             margin: 0 auto 30px;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.15);
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.15);
             transition: background 0.3s, border-color 0.3s;
             position: relative;
         }
 
-        select, input[type="text"] { 
-            width: 100%; 
-            padding: 10px; 
-            margin: 5px 0 15px; 
-            border: 1px solid var(--border-color); 
-            border-radius: 4px; 
-            font-family: monospace; 
+        select,
+        input[type="text"] {
+            width: 100%;
+            padding: 10px;
+            margin: 5px 0 15px;
+            border: 1px solid var(--border-color);
+            border-radius: 4px;
+            font-family: monospace;
             font-size: 1.05em;
             background: var(--input-bg);
             color: var(--text-color);
-            box-sizing: border-box; 
+            box-sizing: border-box;
         }
 
         .search-row {
@@ -96,9 +103,11 @@
             gap: 15px;
             margin-bottom: 10px;
         }
+
         .search-group {
             flex: 1;
         }
+
         .search-group label {
             font-size: 0.9em;
             font-weight: bold;
@@ -106,19 +115,27 @@
             margin-bottom: 3px;
         }
 
-        button { 
-            padding: 10px 22px; 
-            margin: 0 10px 10px 0; 
-            background: var(--btn-bg); 
-            color: var(--btn-text); 
-            border: none; 
-            border-radius: 4px; 
-            cursor: pointer; 
+        button {
+            padding: 10px 22px;
+            margin: 0 10px 10px 0;
+            background: var(--btn-bg);
+            color: var(--btn-text);
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
             font-weight: bold;
             transition: background 0.2s;
         }
-        button:hover { background: var(--btn-hover); }
-        button:disabled { background: #555; cursor: not-allowed; opacity: 0.7; }
+
+        button:hover {
+            background: var(--btn-hover);
+        }
+
+        button:disabled {
+            background: #555;
+            cursor: not-allowed;
+            opacity: 0.7;
+        }
 
         #theme-toggle-btn {
             position: absolute;
@@ -138,13 +155,20 @@
             margin-top: 12px;
             color: var(--text-color);
         }
-        .wos-table th, .wos-table td {
+
+        .wos-table th,
+        .wos-table td {
             border: 1px solid var(--table-border);
             padding: 4px 6px;
             text-align: center;
             vertical-align: middle;
         }
-        .wos-table th { background-color: var(--th-bg); font-weight: bold; }
+
+        .wos-table th {
+            background-color: var(--th-bg);
+            font-weight: bold;
+        }
+
         .wos-table .station-header {
             background-color: var(--station-header-bg);
             color: var(--station-header-text);
@@ -193,10 +217,26 @@
         }
 
         @media print {
-            .no-print { display: none !important; }
-            body { margin: 0; background: white !important; color: black !important; }
-            .container { border: none; box-shadow: none; padding: 0; margin: 0; background: white !important; }
-            :root, body.dark-mode {
+            .no-print {
+                display: none !important;
+            }
+
+            body {
+                margin: 0;
+                background: white !important;
+                color: black !important;
+            }
+
+            .container {
+                border: none;
+                box-shadow: none;
+                padding: 0;
+                margin: 0;
+                background: white !important;
+            }
+
+            :root,
+            body.dark-mode {
                 --text-color: black;
                 --text-heading: black;
                 --table-border: black;
@@ -204,16 +244,33 @@
                 --station-header-bg: #fffacd;
                 --station-header-text: black;
             }
-            .tabs { display: none !important; }
+
+            .tabs {
+                display: none !important;
+            }
         }
 
         @media (max-width: 600px) {
-            .search-row { flex-direction: column; gap: 0; }
-            .tabs { flex-direction: column; }
-            .tab { margin-right: 0; margin-bottom: 2px; border-radius: 4px; }
-            .tab.active { border-bottom: 1px solid var(--tab-active); }
+            .search-row {
+                flex-direction: column;
+                gap: 0;
+            }
+
+            .tabs {
+                flex-direction: column;
+            }
+
+            .tab {
+                margin-right: 0;
+                margin-bottom: 2px;
+                border-radius: 4px;
+            }
+
+            .tab.active {
+                border-bottom: 1px solid var(--tab-active);
+            }
         }
-        
+
         /* Style dla komunikatu ostrzegawczego */
         .warning-message {
             background: #fff3cd;
@@ -223,7 +280,7 @@
             border-radius: 4px;
             margin: 20px 0;
         }
-        
+
         body.dark-mode .warning-message {
             background: #664d03;
             border: 1px solid #966a03;
@@ -231,470 +288,450 @@
         }
     </style>
 </head>
+
 <body>
 
-<div class="container no-print">
-    <button id="theme-toggle-btn">🌙</button>
+    <div class="container no-print">
+        <button id="theme-toggle-btn">🌙</button>
 
-    <h1>Wykaz Ostrzeżeń Stałych (WOS) – TD2</h1>
+        <h1>Wykaz Ostrzeżeń Stałych (WOS) – TD2</h1>
 
-    <!-- Server selector -->
-    <div style="margin-bottom: 20px; text-align: center;">
-        <label for="server-select" style="font-weight: bold; margin-right: 10px;">Wybierz serwer:</label>
-        <select id="server-select" style="width: auto; display: inline-block;">
-            <option value="eu">PL1</option>
-            <option value="cae">PL2</option>
-            <option value="ru">EN</option>
-        </select>
-    </div>
+        <!-- Server selector -->
+        <div style="margin-bottom: 20px; text-align: center;">
+            <label for="server-select" style="font-weight: bold; margin-right: 10px;">Wybierz serwer:</label>
+            <select id="server-select" style="width: auto; display: inline-block;">
+                <option value="eu">PL1</option>
+                <option value="cae">PL2</option>
+                <option value="ru">EN</option>
+            </select>
+        </div>
 
-    <!-- Tab navigation -->
-    <div class="tabs">
-        <div class="tab active" data-tab="train-tab">WOS dla pociągu</div>
-        <div class="tab" data-tab="station-tab">WOS dla stacji</div>
-    </div>
+        <!-- Tab navigation -->
+        <div class="tabs">
+            <div class="tab active" data-tab="train-tab">WOS dla pociągu</div>
+            <div class="tab" data-tab="station-tab">WOS dla stacji</div>
+        </div>
 
-    <!-- Tab 1: WOS dla pociągu -->
-    <div id="train-tab" class="tab-content active">
-        <div class="search-row">
-            <div class="search-group">
-                <label for="search-nick">Szukaj po nicku:</label>
-                <input type="text" id="search-nick" list="list-nicks" placeholder="Wpisz nick maszynisty...">
-                <datalist id="list-nicks"></datalist>
+        <!-- Tab 1: WOS dla pociągu -->
+        <div id="train-tab" class="tab-content active">
+            <div class="search-row">
+                <div class="search-group">
+                    <label for="search-nick">Szukaj po nicku:</label>
+                    <input type="text" id="search-nick" list="list-nicks" placeholder="Wpisz nick maszynisty...">
+                    <datalist id="list-nicks"></datalist>
+                </div>
+                <div class="search-group">
+                    <label for="search-train">Szukaj po nr pociągu:</label>
+                    <input type="text" id="search-train" list="list-trains" placeholder="Wpisz numer pociągu...">
+                    <datalist id="list-trains"></datalist>
+                </div>
             </div>
-            <div class="search-group">
-                <label for="search-train">Szukaj po nr pociągu:</label>
-                <input type="text" id="search-train" list="list-trains" placeholder="Wpisz numer pociągu...">
-                <datalist id="list-trains"></datalist>
+
+            <label for="maszynista">Pełna lista (Maszynista | Pociąg):</label>
+            <select id="maszynista">
+                <option value="">-- Wybierz maszynistę --</option>
+            </select>
+
+            <div style="margin: 10px 0;">
+                <label style="font-weight: normal; cursor: pointer;">
+                    <input type="checkbox" id="save-last-driver" style="margin-right: 8px;">
+                    Zapamiętaj ostatniego maszynistę
+                </label>
+            </div>
+
+            <div>
+                <button id="refreshButton" onclick="refreshDriversData()">🔄 Odśwież</button>
+                <button id="printButton" disabled onclick="printWithFilename()">🖨️ Drukuj / Zapisz jako PDF</button>
             </div>
         </div>
 
-        <label for="maszynista">Pełna lista (Maszynista | Pociąg):</label>
-        <select id="maszynista">
-            <option value="">-- Wybierz maszynistę --</option>
-        </select>
+        <!-- Tab 2: WOS dla stacji -->
+        <div id="station-tab" class="tab-content">
+            <div class="search-group">
+                <label for="search-station">Szukaj stacji:</label>
+                <input type="text" id="search-station" list="list-stations" placeholder="Wpisz nazwę stacji...">
+                <datalist id="list-stations"></datalist>
+            </div>
 
-        <div style="margin: 10px 0;">
-            <label style="font-weight: normal; cursor: pointer;">
-                <input type="checkbox" id="save-last-driver" style="margin-right: 8px;">
-                Zapamiętaj ostatniego maszynistę
-            </label>
-        </div>
+            <label for="station-select">Wybierz stację z listy:</label>
+            <select id="station-select">
+                <option value="">-- Wybierz stację --</option>
+            </select>
 
-        <div>
-            <button id="refreshButton" onclick="refreshDriversData()">🔄 Odśwież</button>
-            <button id="printButton" disabled onclick="printWithFilename()">🖨️ Drukuj / Zapisz jako PDF</button>
-        </div>
-    </div>
-
-    <!-- Tab 2: WOS dla stacji -->
-    <div id="station-tab" class="tab-content">
-        <div class="search-group">
-            <label for="search-station">Szukaj stacji:</label>
-            <input type="text" id="search-station" list="list-stations" placeholder="Wpisz nazwę stacji...">
-            <datalist id="list-stations"></datalist>
-        </div>
-
-        <label for="station-select">Wybierz stację z listy:</label>
-        <select id="station-select">
-            <option value="">-- Wybierz stację --</option>
-        </select>
-
-        <div>
-            <button id="station-printButton" disabled onclick="printStationWithFilename()">🖨️ Drukuj / Zapisz jako PDF</button>
+            <div>
+                <button id="station-printButton" disabled onclick="printStationWithFilename()">🖨️ Drukuj / Zapisz jako
+                    PDF</button>
+            </div>
         </div>
     </div>
-</div>
 
-<div class="container">
-    <div id="wynik"></div>
-</div>
+    <div class="container">
+        <div id="wynik"></div>
+    </div>
 
-<script src="baza.js"></script>
+    <script src="baza.js"></script>
 
-<script>
-    const toggleBtn = document.getElementById('theme-toggle-btn');
-    const body = document.body;
-    const savedTheme = localStorage.getItem('wos_theme');
-    if (savedTheme === 'dark') { body.classList.add('dark-mode'); toggleBtn.textContent = '☀️'; }
+    <script>
+        const toggleBtn = document.getElementById('theme-toggle-btn');
+        const body = document.body;
+        const savedTheme = localStorage.getItem('wos_theme');
+        if (savedTheme === 'dark') { body.classList.add('dark-mode'); toggleBtn.textContent = '☀️'; }
 
-    toggleBtn.addEventListener('click', () => {
-        body.classList.toggle('dark-mode');
-        if (body.classList.contains('dark-mode')) {
-            localStorage.setItem('wos_theme', 'dark');
-            toggleBtn.textContent = '☀️';
-        } else {
-            localStorage.setItem('wos_theme', 'light');
-            toggleBtn.textContent = '🌙';
-        }
-    });
-
-    // Tab functionality
-    const tabs = document.querySelectorAll('.tab');
-    const tabContents = document.querySelectorAll('.tab-content');
-
-    tabs.forEach(tab => {
-        tab.addEventListener('click', () => {
-            const targetTab = tab.dataset.tab;
-            
-            // Remove active class from all tabs and contents
-            tabs.forEach(t => t.classList.remove('active'));
-            tabContents.forEach(content => content.classList.remove('active'));
-            
-            // Add active class to clicked tab and corresponding content
-            tab.classList.add('active');
-            document.getElementById(targetTab).classList.add('active');
-        });
-    });
-
-    async function refreshDriversData() {
-        const refreshButton = document.getElementById('refreshButton');
-        const originalText = refreshButton.innerHTML;
-        
-        // Zapisz aktualny stan
-        const mainSelect = document.getElementById('maszynista');
-        const currentValue = mainSelect.value;
-        const saveCheckboxState = document.getElementById('save-last-driver').checked;
-        
-        // Zmień stan przycisku na ładowanie
-        refreshButton.disabled = true;
-        refreshButton.innerHTML = '⏳ Ładowanie...';
-        
-        try {
-            // Wyczyść istniejące opcje
-            mainSelect.innerHTML = '<option value="">-- Wybierz maszynistę --</option>';
-            document.getElementById('list-nicks').innerHTML = '';
-            document.getElementById('list-trains').innerHTML = '';
-            
-            // Załaduj dane na nowo - musimy wywołać funkcję z modułu
-            if (window.loadMaszynisciModule) {
-                await window.loadMaszynisciModule();
+        toggleBtn.addEventListener('click', () => {
+            body.classList.toggle('dark-mode');
+            if (body.classList.contains('dark-mode')) {
+                localStorage.setItem('wos_theme', 'dark');
+                toggleBtn.textContent = '☀️';
+            } else {
+                localStorage.setItem('wos_theme', 'light');
+                toggleBtn.textContent = '🌙';
             }
-            
-            // Przywróć stan checkboxa
-            document.getElementById('save-last-driver').checked = saveCheckboxState;
-            
-        } catch (error) {
-            console.error('Błąd odświeżania:', error);
-            document.getElementById("wynik").innerHTML = `
+        });
+
+        const tabs = document.querySelectorAll('.tab');
+        const tabContents = document.querySelectorAll('.tab-content');
+
+        tabs.forEach(tab => {
+            tab.addEventListener('click', () => {
+                const targetTab = tab.dataset.tab;
+
+                tabs.forEach(t => t.classList.remove('active'));
+                tabContents.forEach(content => content.classList.remove('active'));
+
+                tab.classList.add('active');
+                document.getElementById(targetTab).classList.add('active');
+            });
+        });
+
+        async function refreshDriversData() {
+            const refreshButton = document.getElementById('refreshButton');
+            const originalText = refreshButton.innerHTML;
+
+            const mainSelect = document.getElementById('maszynista');
+            const currentValue = mainSelect.value;
+            const saveCheckboxState = document.getElementById('save-last-driver').checked;
+
+            refreshButton.disabled = true;
+            refreshButton.innerHTML = '⏳ Ładowanie...';
+
+            try {
+                mainSelect.innerHTML = '<option value="">-- Wybierz maszynistę --</option>';
+                document.getElementById('list-nicks').innerHTML = '';
+                document.getElementById('list-trains').innerHTML = '';
+
+                if (window.loadMaszynisciModule) {
+                    await window.loadMaszynisciModule();
+                }
+
+                document.getElementById('save-last-driver').checked = saveCheckboxState;
+
+            } catch (error) {
+                console.error('Błąd odświeżania:', error);
+                document.getElementById("wynik").innerHTML = `
                 <div class="warning-message">
                     <strong>⚠️ Błąd:</strong> Nie udało się odświeżyć danych maszynistów.
                     <br>Spróbuj ponownie później.
                 </div>
             `;
-        } finally {
-            // Przywróć stan przycisku
-            refreshButton.disabled = false;
-            refreshButton.innerHTML = originalText;
-        }
-    }
-
-    // Funkcja drukowania z dynamiczną nazwą pliku dla pociągu
-    function printWithFilename() {
-        const maszynista = document.getElementById("maszynista").value;
-        if (!maszynista) return;
-        
-        // Pobierz numer pociągu z danych w module
-        let trainNumber = 'bez-numeru';
-        if (window.trainsDataModule && window.trainsDataModule.length > 0) {
-            const train = window.trainsDataModule.find(t => t.driverName === maszynista);
-            if (train && train.trainNo) {
-                trainNumber = train.trainNo;
+            } finally {
+                refreshButton.disabled = false;
+                refreshButton.innerHTML = originalText;
             }
         }
-        
-        // Ustaw tytuł dokumentu
-        const originalTitle = document.title;
-        const currentDate = new Date().toLocaleDateString('pl-PL').replace(/\./g, '-');
-        document.title = `WOS dla pociągu ${trainNumber} z dnia ${currentDate}`;
-        
-        // Wydrukuj
-        window.print();
-        
-        // Przywróć oryginalny tytuł
-        setTimeout(() => {
-            document.title = originalTitle;
-        }, 100);
-    }
 
-    // Funkcja drukowania z dynamiczną nazwą pliku dla stacji
-    function printStationWithFilename() {
-        const station = document.getElementById('station-select').value;
-        if (!station) return;
-        
-        // Ustaw tytuł dokumentu
-        const originalTitle = document.title;
-        const currentDate = new Date().toLocaleDateString('pl-PL').replace(/\./g, '-');
-        const stationName = station.replace(/[^a-zA-Z0-9ąćęłńóśźżĄĆĘŁŃÓŚŹŻ]/g, '_');
-        document.title = `WOS dla stacji ${stationName} z dnia ${currentDate}`;
-        
-        // Wydrukuj
-        window.print();
-        
-        // Przywróć oryginalny tytuł
-        setTimeout(() => {
-            document.title = originalTitle;
-        }, 100);
-    }
-</script>
+        function printWithFilename() {
+            const maszynista = document.getElementById("maszynista").value;
+            if (!maszynista) return;
 
-<script>
-    let trainsData = [];
-    let stations = [];
-
-    const nickToTrainMap = new Map();
-    const trainToNickMap = new Map();
-
-    async function loadMaszynisci() {
-        const select = document.getElementById('maszynista');
-        const dlNicks = document.getElementById('list-nicks');
-        const dlTrains = document.getElementById('list-trains');
-        const saveCheckbox = document.getElementById('save-last-driver');
-        const serverSelect = document.getElementById('server-select');
-
-        // Wyczyść select na początku
-        select.innerHTML = '<option value="">-- Wybierz maszynistę --</option>';
-        dlNicks.innerHTML = '';
-        dlTrains.innerHTML = '';
-
-        nickToTrainMap.clear();
-        trainToNickMap.clear();
-
-        try {
-            const response = await fetch('https://stacjownik.spythere.eu/api/getActiveData');
-            if (!response.ok) throw new Error('Błąd API');
-
-            const data = await response.json();
-            
-            // Filtruj dane na podstawie wybranego serwera
-            const selectedServer = serverSelect.value;
-            let filteredTrains = data.trains;
-            
-            // Mapowanie serwerów na regiony API
-            const serverRegionMap = {
-                'eu': 'eu',      // PL1
-                'cae': 'cae',    // PL2
-                'ru': 'ru'       // EN
-            };
-            
-            const targetRegion = serverRegionMap[selectedServer];
-            
-            if (targetRegion) {
-                filteredTrains = data.trains.filter(train => train.region === targetRegion);
-                console.log(`Filtruję dane dla serwera ${selectedServer} (region ${targetRegion}): ${filteredTrains.length} pociągów`);
-            } else {
-                console.log(`Serwer ${selectedServer} nie ma odpowiednika w API, używam wszystkich danych`);
-            }
-            
-            trainsData = filteredTrains;
-
-            const maszynisciMap = new Map();
-            trainsData.forEach(train => { 
-                if (train.driverName) maszynisciMap.set(train.driverName, train); 
-            });
-
-            const sortedNames = Array.from(maszynisciMap.keys()).sort((a, b) => a.localeCompare(b, 'pl'));
-
-            const zRozkladem = sortedNames.filter(name => {
-                const t = maszynisciMap.get(name);
-                return t.timetable && t.timetable.path;
-            });
-            const bezRozkladu = sortedNames.filter(name => !zRozkladem.includes(name));
-
-            zRozkladem.forEach(name => {
-                const train = maszynisciMap.get(name);
-                const trainNo = train.trainNo || "???";
-
-                const option = document.createElement('option');
-                option.value = name;
-                option.textContent = `${name} | ${trainNo}`;
-                select.appendChild(option);
-
-                const optNick = document.createElement('option');
-                optNick.value = name;
-                dlNicks.appendChild(optNick);
-
-                if (train.trainNo) {
-                    const trainNoStr = String(train.trainNo).trim();
-
-                    const optTrain = document.createElement('option');
-                    optTrain.value = trainNoStr;
-                    dlTrains.appendChild(optTrain);
-
-                    nickToTrainMap.set(name, trainNoStr);
-                    trainToNickMap.set(trainNoStr, name);
+            let trainNumber = 'bez-numeru';
+            if (window.trainsDataModule && window.trainsDataModule.length > 0) {
+                const train = window.trainsDataModule.find(t => t.driverName === maszynista);
+                if (train && train.trainNo) {
+                    trainNumber = train.trainNo;
                 }
-            });
-
-            if (zRozkladem.length > 0 && bezRozkladu.length > 0) {
-                const separator = document.createElement('option');
-                separator.disabled = true;
-                separator.textContent = "────────── BRAK ROZKŁADU ──────────";
-                select.appendChild(separator);
             }
 
-            bezRozkladu.forEach(name => {
-                const option = document.createElement('option');
-                option.value = name;
-                option.textContent = `${name} (brak danych trasy)`;
-                option.disabled = true;
-                select.appendChild(option);
-            });
+            const originalTitle = document.title;
+            const currentDate = new Date().toLocaleDateString('pl-PL').replace(/\./g, '-');
+            document.title = `WOS dla pociągu ${trainNumber} z dnia ${currentDate}`;
 
-            const savedDriver = localStorage.getItem('wos_last_driver');
-            if (savedDriver) {
-                const savedDriverTrain = maszynisciMap.get(savedDriver);
-                
-                if (savedDriverTrain && savedDriverTrain.timetable && savedDriverTrain.timetable.path) {
-                    select.value = savedDriver;
-                    saveCheckbox.checked = true;
-                    updateStacjeFromMaszynista();
-                } else if (maszynisciMap.has(savedDriver)) {
-                    saveCheckbox.checked = true;
-                    document.getElementById("wynik").innerHTML = `
+            window.print();
+
+            setTimeout(() => {
+                document.title = originalTitle;
+            }, 100);
+        }
+
+        function printStationWithFilename() {
+            const station = document.getElementById('station-select').value;
+            if (!station) return;
+
+            const originalTitle = document.title;
+            const currentDate = new Date().toLocaleDateString('pl-PL').replace(/\./g, '-');
+            const stationName = station.replace(/[^a-zA-Z0-9ąćęłńóśźżĄĆĘŁŃÓŚŹŻ]/g, '_');
+            document.title = `WOS dla stacji ${stationName} z dnia ${currentDate}`;
+
+            window.print();
+
+            setTimeout(() => {
+                document.title = originalTitle;
+            }, 100);
+        }
+    </script>
+
+    <script>
+        let trainsData = [];
+        let stations = [];
+
+        const nickToTrainMap = new Map();
+        const trainToNickMap = new Map();
+
+        async function loadMaszynisci() {
+            const select = document.getElementById('maszynista');
+            const dlNicks = document.getElementById('list-nicks');
+            const dlTrains = document.getElementById('list-trains');
+            const saveCheckbox = document.getElementById('save-last-driver');
+            const serverSelect = document.getElementById('server-select');
+
+            select.innerHTML = '<option value="">-- Wybierz maszynistę --</option>';
+            dlNicks.innerHTML = '';
+            dlTrains.innerHTML = '';
+
+            nickToTrainMap.clear();
+            trainToNickMap.clear();
+
+            try {
+                const response = await fetch('https://stacjownik.spythere.eu/api/getActiveData');
+                if (!response.ok) throw new Error('Błąd API');
+
+                const data = await response.json();
+
+                const selectedServer = serverSelect.value;
+                let filteredTrains = data.trains;
+
+                const serverRegionMap = {
+                    'eu': 'eu',      // PL1
+                    'cae': 'cae',    // PL2
+                    'ru': 'ru'       // EN
+                };
+
+                const targetRegion = serverRegionMap[selectedServer];
+
+                if (targetRegion) {
+                    filteredTrains = data.trains.filter(train => train.region === targetRegion);
+                    console.log(`Filtruję dane dla serwera ${selectedServer} (region ${targetRegion}): ${filteredTrains.length} pociągów`);
+                } else {
+                    console.log(`Serwer ${selectedServer} nie ma odpowiednika w API, używam wszystkich danych`);
+                }
+
+                trainsData = filteredTrains;
+
+                const maszynisciMap = new Map();
+                trainsData.forEach(train => {
+                    if (train.driverName) maszynisciMap.set(train.driverName, train);
+                });
+
+                const sortedNames = Array.from(maszynisciMap.keys()).sort((a, b) => a.localeCompare(b, 'pl'));
+
+                const zRozkladem = sortedNames.filter(name => {
+                    const t = maszynisciMap.get(name);
+                    return t.timetable && t.timetable.path;
+                });
+                const bezRozkladu = sortedNames.filter(name => !zRozkladem.includes(name));
+
+                zRozkladem.forEach(name => {
+                    const train = maszynisciMap.get(name);
+                    const trainNo = train.trainNo || "???";
+
+                    const option = document.createElement('option');
+                    option.value = name;
+                    option.textContent = `${name} | ${trainNo}`;
+                    select.appendChild(option);
+
+                    const optNick = document.createElement('option');
+                    optNick.value = name;
+                    dlNicks.appendChild(optNick);
+
+                    if (train.trainNo) {
+                        const trainNoStr = String(train.trainNo).trim();
+
+                        const optTrain = document.createElement('option');
+                        optTrain.value = trainNoStr;
+                        dlTrains.appendChild(optTrain);
+
+                        nickToTrainMap.set(name, trainNoStr);
+                        trainToNickMap.set(trainNoStr, name);
+                    }
+                });
+
+                if (zRozkladem.length > 0 && bezRozkladu.length > 0) {
+                    const separator = document.createElement('option');
+                    separator.disabled = true;
+                    separator.textContent = "────────── BRAK ROZKŁADU ──────────";
+                    select.appendChild(separator);
+                }
+
+                bezRozkladu.forEach(name => {
+                    const option = document.createElement('option');
+                    option.value = name;
+                    option.textContent = `${name} (brak danych trasy)`;
+                    option.disabled = true;
+                    select.appendChild(option);
+                });
+
+                const savedDriver = localStorage.getItem('wos_last_driver');
+                if (savedDriver) {
+                    const savedDriverTrain = maszynisciMap.get(savedDriver);
+
+                    if (savedDriverTrain && savedDriverTrain.timetable && savedDriverTrain.timetable.path) {
+                        select.value = savedDriver;
+                        saveCheckbox.checked = true;
+                        updateStacjeFromMaszynista();
+                    } else if (maszynisciMap.has(savedDriver)) {
+                        saveCheckbox.checked = true;
+                        document.getElementById("wynik").innerHTML = `
                         <div class="warning-message">
                             <strong>⚠️ Informacja:</strong> Obecnie ten maszynista nie posiada aktywnego rozkładu jazdy.
                             <br>Proszę wybrać innego maszynistę z listy powyżej.
                         </div>
                     `;
-                } else {
-                    localStorage.removeItem('wos_last_driver');
+                    } else {
+                        localStorage.removeItem('wos_last_driver');
+                    }
                 }
+
+            } catch (error) {
+                console.error('Błąd:', error);
+                const option = document.createElement('option');
+                option.textContent = 'Błąd ładowania danych';
+                select.appendChild(option);
             }
-
-        } catch (error) {
-            console.error('Błąd:', error);
-            const option = document.createElement('option');
-            option.textContent = 'Błąd ładowania danych';
-            select.appendChild(option);
         }
-    }
 
-    function loadStations() {
-        const stationSelect = document.getElementById('station-select');
-        const stationDatalist = document.getElementById('list-stations');
-        
-        const stationNames = Object.keys(BAZA_OSTRZEZEN).sort((a, b) => a.localeCompare(b, 'pl'));
-        
-        stationNames.forEach(stationName => {
-            const option = document.createElement('option');
-            option.value = stationName;
-            option.textContent = stationName;
-            stationSelect.appendChild(option);
-            
-            const datalistOption = document.createElement('option');
-            datalistOption.value = stationName;
-            stationDatalist.appendChild(datalistOption);
+        function loadStations() {
+            const stationSelect = document.getElementById('station-select');
+            const stationDatalist = document.getElementById('list-stations');
+
+            const stationNames = Object.keys(BAZA_OSTRZEZEN).sort((a, b) => a.localeCompare(b, 'pl'));
+
+            stationNames.forEach(stationName => {
+                const option = document.createElement('option');
+                option.value = stationName;
+                option.textContent = stationName;
+                stationSelect.appendChild(option);
+
+                const datalistOption = document.createElement('option');
+                datalistOption.value = stationName;
+                stationDatalist.appendChild(datalistOption);
+            });
+        }
+
+        const searchNickInput = document.getElementById('search-nick');
+        const searchTrainInput = document.getElementById('search-train');
+        const mainSelect = document.getElementById('maszynista');
+
+        searchNickInput.addEventListener('input', (e) => {
+            const val = e.target.value;
+            if (nickToTrainMap.has(val)) {
+                mainSelect.value = val;
+                updateStacjeFromMaszynista();
+                searchTrainInput.value = "";
+            }
         });
-    }
 
-    const searchNickInput = document.getElementById('search-nick');
-    const searchTrainInput = document.getElementById('search-train');
-    const mainSelect = document.getElementById('maszynista');
+        searchTrainInput.addEventListener('input', (e) => {
+            const val = e.target.value.trim();
+            if (trainToNickMap.has(val)) {
+                const driverName = trainToNickMap.get(val);
+                mainSelect.value = driverName;
+                updateStacjeFromMaszynista();
+                searchNickInput.value = "";
+            }
+        });
 
-    searchNickInput.addEventListener('input', (e) => {
-        const val = e.target.value;
-        if (nickToTrainMap.has(val)) {
-            mainSelect.value = val;
-            updateStacjeFromMaszynista();
-            searchTrainInput.value = "";
-        }
-    });
-
-    searchTrainInput.addEventListener('input', (e) => {
-        const val = e.target.value.trim();
-        if (trainToNickMap.has(val)) {
-            const driverName = trainToNickMap.get(val);
-            mainSelect.value = driverName;
+        mainSelect.addEventListener('change', () => {
             updateStacjeFromMaszynista();
             searchNickInput.value = "";
-        }
-    });
+            searchTrainInput.value = "";
 
-    mainSelect.addEventListener('change', () => {
-        updateStacjeFromMaszynista();
-        searchNickInput.value = "";
-        searchTrainInput.value = "";
-        
-        const saveCheckbox = document.getElementById('save-last-driver');
-        if (saveCheckbox.checked && mainSelect.value) {
-            localStorage.setItem('wos_last_driver', mainSelect.value);
-        }
-    });
+            const saveCheckbox = document.getElementById('save-last-driver');
+            if (saveCheckbox.checked && mainSelect.value) {
+                localStorage.setItem('wos_last_driver', mainSelect.value);
+            }
+        });
 
-    // Obsługa checkboxa zapisywania
-    document.getElementById('save-last-driver').addEventListener('change', (e) => {
-        if (!e.target.checked) {
-            localStorage.removeItem('wos_last_driver');
-        } else if (mainSelect.value) {
-            localStorage.setItem('wos_last_driver', mainSelect.value);
-        }
-    });
+        document.getElementById('save-last-driver').addEventListener('change', (e) => {
+            if (!e.target.checked) {
+                localStorage.removeItem('wos_last_driver');
+            } else if (mainSelect.value) {
+                localStorage.setItem('wos_last_driver', mainSelect.value);
+            }
+        });
 
-    // Eksportuj dane dla innych funkcji
-    window.trainsDataModule = trainsData;
+        window.trainsDataModule = trainsData;
 
-    const searchStationInput = document.getElementById('search-station');
-    const stationSelect = document.getElementById('station-select');
+        const searchStationInput = document.getElementById('search-station');
+        const stationSelect = document.getElementById('station-select');
 
-    searchStationInput.addEventListener('input', (e) => {
-        const val = e.target.value;
-        const matchingStation = Object.keys(BAZA_OSTRZEZEN).find(station => 
-            normalizuj(station).includes(normalizuj(val))
-        );
-        
-        if (matchingStation) {
-            stationSelect.value = matchingStation;
+        searchStationInput.addEventListener('input', (e) => {
+            const val = e.target.value;
+            const matchingStation = Object.keys(BAZA_OSTRZEZEN).find(station =>
+                normalizuj(station).includes(normalizuj(val))
+            );
+
+            if (matchingStation) {
+                stationSelect.value = matchingStation;
+                generujWOSDlaStacji();
+            }
+        });
+
+        stationSelect.addEventListener('change', () => {
             generujWOSDlaStacji();
-        }
-    });
+            searchStationInput.value = "";
+        });
 
-    stationSelect.addEventListener('change', () => {
-        generujWOSDlaStacji();
-        searchStationInput.value = "";
-    });
+        function updateStacjeFromMaszynista() {
+            const selectedDriver = document.getElementById("maszynista").value;
+            if (!selectedDriver) return;
 
-    function updateStacjeFromMaszynista() {
-        const selectedDriver = document.getElementById("maszynista").value;
-        if (!selectedDriver) return;
+            const train = trainsData.filter(t => t.driverName === selectedDriver).find(t => t.timetable?.path);
 
-        const train = trainsData.filter(t => t.driverName === selectedDriver).find(t => t.timetable?.path);
+            if (!train || !train.timetable?.path) {
+                document.getElementById("wynik").innerHTML = "";
+                return;
+            }
 
-        if (!train || !train.timetable?.path) {
-            document.getElementById("wynik").innerHTML = "";
-            return;
-        }
+            const pathStations = train.timetable.path
+                .split(',')
+                .map(segment => segment.split('@')[0].trim())
+                .filter(name => name.includes('.sc'))
+                .map(name => {
+                    const match = name.match(/^(.+?)\s+[0-9a-f]{8}\.sc$/);
+                    return match ? match[1] : name;
+                });
 
-        const pathStations = train.timetable.path
-            .split(',')
-            .map(segment => segment.split('@')[0].trim())
-            .filter(name => name.includes('.sc'))
-            .map(name => {
-                const match = name.match(/^(.+?)\s+[0-9a-f]{8}\.sc$/);
-                return match ? match[1] : name;
-            });
-
-        stations = pathStations.join(',');
-        generujWOS();
-        document.getElementById('printButton').disabled = false;
-    }
-
-    function generujWOSDlaStacji() {
-        const selectedStation = document.getElementById('station-select').value;
-        if (!selectedStation) {
-            document.getElementById("wynik").innerHTML = "";
-            document.getElementById('station-printButton').disabled = true;
-            return;
+            stations = pathStations.join(',');
+            generujWOS();
+            document.getElementById('printButton').disabled = false;
         }
 
-        const klucz = Object.keys(BAZA_OSTRZEZEN).find(k => normalizuj(k) === normalizuj(selectedStation));
-        if (!klucz) {
-            document.getElementById("wynik").innerHTML = "<p>Brak danych dla wybranej stacji.</p>";
-            document.getElementById('station-printButton').disabled = true;
-            return;
-        }
+        function generujWOSDlaStacji() {
+            const selectedStation = document.getElementById('station-select').value;
+            if (!selectedStation) {
+                document.getElementById("wynik").innerHTML = "";
+                document.getElementById('station-printButton').disabled = true;
+                return;
+            }
 
-        let html = `
+            const klucz = Object.keys(BAZA_OSTRZEZEN).find(k => normalizuj(k) === normalizuj(selectedStation));
+            if (!klucz) {
+                document.getElementById("wynik").innerHTML = "<p>Brak danych dla wybranej stacji.</p>";
+                document.getElementById('station-printButton').disabled = true;
+                return;
+            }
+
+            let lp = 1;
+            let html = `
         <h1 style="margin:0 0 12px; font-size:15pt; text-align:center; color: var(--text-color);">
             Wykaz Ostrzeżeń Stałych<br>
             oraz prędkości drogowych
@@ -702,138 +739,93 @@
         <span style="float:right;">Godzina wydruku: <b>${new Date().toLocaleTimeString('pl-PL')}</b></span>
         <span><br><br></span>
         <span>Wygenerowano dla stacji: <b>${klucz}</b></span>
+        ${rysujWOS([klucz])}
+        `;
+            document.getElementById("wynik").innerHTML = html;
+            document.getElementById('station-printButton').disabled = false;
+        }
 
-        <table class="wos-table">
-          <thead>
-            <tr>
-              <th style="width: 3em;">Nazwa szlaku lub posterunku</th>
-              <th colspan="2">Lokalizacja</th>
-              <th style="width: 36%;">Przyczyna</th>
-              <th style="width: 3.5em;">Tor</th>
-              <th colspan="2">Prędkość</th>
-              <th style="width: 24%;">Uwagi</th>
-            </tr>
-            <tr>
-              <th></th>
-              <th>od km</th>
-              <th>do km</th>
-              <th></th>
-              <th></th>
-              <th>niep.</th>
-              <th>parz.</th>
-              <th></th>
-            </tr>
-          </thead>
-          <tbody>`;
+        document.addEventListener('DOMContentLoaded', () => {
+            loadMaszynisci();
+            loadStations();
 
-        html += `<tr><td colspan="8" class="station-header">${klucz}</td></tr>`;
-        const dane = [...BAZA_OSTRZEZEN[klucz]].sort((a,b) => parseFloat(a[0] || a[1] || 0) - parseFloat(b[0] || b[1] || 0));
+            const serverSelect = document.getElementById('server-select');
+            serverSelect.value = 'eu';
 
-        dane.forEach(([stacjaSzlak, od, doo, przyczyna, tor, vNiep, vPar, uwagi]) => {
-            html += `
-            <tr>
-              <td style="text-align:left;">${stacjaSzlak || '—'}</td>
-              <td>${formatKm(od)}</td>
-              <td>${formatKm(doo)}</td>
-              <td style="text-align:left;">${przyczyna || '—'}</td>
-              <td>${tor || '—'}</td>
-              <td>${vNiep || '—'}</td>
-              <td>${vPar || '—'}</td>
-              <td style="text-align:left;">${uwagi || '—'}</td>
-            </tr>`;
+            serverSelect.addEventListener('change', async () => {
+                console.log('Zmieniono serwer na:', serverSelect.value);
+
+                try {
+                    await loadMaszynisci();
+                    window.trainsDataModule = trainsData;
+                    console.log('Dane załadowane pomyślnie');
+                } catch (error) {
+                    console.error('Błąd ładowania danych:', error);
+                    document.getElementById('maszynista').innerHTML = '<option value="">-- Błąd ładowania --</option>';
+                }
+            });
+
+            loadMaszynisci();
         });
 
-        html += "</tbody></table>";
-        document.getElementById("wynik").innerHTML = html;
-        document.getElementById('station-printButton').disabled = false;
-    }
+        function normalizuj(nazwa) {
+            return (nazwa || "").trim().toLowerCase()
+                .replace(/[ąćęłńóśźż]/g, c => ({ 'ą': 'a', 'ć': 'c', 'ę': 'e', 'ł': 'l', 'ń': 'n', 'ó': 'o', 'ś': 's', 'ź': 'z', 'ż': 'z' })[c] || c);
+        }
 
-    document.addEventListener('DOMContentLoaded', () => {
-        loadMaszynisci();
-        loadStations();
-        
-        // Ustaw domyślny serwer na PL1 (eu)
-        const serverSelect = document.getElementById('server-select');
-        serverSelect.value = 'eu';
-        
-        // Dodaj prosty event listener dla zmiany serwera
-        serverSelect.addEventListener('change', async () => {
-            console.log('Zmieniono serwer na:', serverSelect.value);
-            
+        function formatKm(km) { return km ? km.replace('.', ',') : '—'; }
+
+        async function refreshDriversData() {
+            const refreshButton = document.getElementById('refreshButton');
+            const originalText = refreshButton.textContent;
+
             try {
+                refreshButton.textContent = '🔄 Ładowanie...';
+                refreshButton.disabled = true;
+
                 await loadMaszynisci();
                 window.trainsDataModule = trainsData;
-                console.log('Dane załadowane pomyślnie');
-            } catch (error) {
-                console.error('Błąd ładowania danych:', error);
-                document.getElementById('maszynista').innerHTML = '<option value="">-- Błąd ładowania --</option>';
-            }
-        });
-        
-        // Załaduj dane dla domyślnego serwera
-        loadMaszynisci();
-    });
 
-    function normalizuj(nazwa) {
-        return (nazwa || "").trim().toLowerCase()
-            .replace(/[ąćęłńóśźż]/g, c => ({'ą':'a','ć':'c','ę':'e','ł':'l','ń':'n','ó':'o','ś':'s','ź':'z','ż':'z'})[c] || c);
-    }
-
-    function formatKm(km) { return km ? km.replace('.', ',') : '—'; }
-
-    async function refreshDriversData() {
-        const refreshButton = document.getElementById('refreshButton');
-        const originalText = refreshButton.textContent;
-        
-        try {
-            refreshButton.textContent = '🔄 Ładowanie...';
-            refreshButton.disabled = true;
-            
-            await loadMaszynisci();
-            window.trainsDataModule = trainsData;
-            
-            // Zachować wybranego maszynistę jeśli nadal istnieje
-            const currentSelection = document.getElementById('maszynista').value;
-            if (currentSelection) {
-                const driverExists = trainsData.some(t => t.driverName === currentSelection);
-                if (driverExists) {
-                    document.getElementById('maszynista').value = currentSelection;
-                    updateStacjeFromMaszynista();
+                // Zachować wybranego maszynistę jeśli nadal istnieje
+                const currentSelection = document.getElementById('maszynista').value;
+                if (currentSelection) {
+                    const driverExists = trainsData.some(t => t.driverName === currentSelection);
+                    if (driverExists) {
+                        document.getElementById('maszynista').value = currentSelection;
+                        updateStacjeFromMaszynista();
+                    }
                 }
+
+                refreshButton.textContent = '✅ Odświeżono';
+                setTimeout(() => {
+                    refreshButton.textContent = originalText;
+                    refreshButton.disabled = false;
+                }, 1500);
+
+            } catch (error) {
+                console.error('Błąd odświeżania:', error);
+                refreshButton.textContent = '❌ Błąd';
+                setTimeout(() => {
+                    refreshButton.textContent = originalText;
+                    refreshButton.disabled = false;
+                }, 1500);
             }
-            
-            refreshButton.textContent = '✅ Odświeżono';
-            setTimeout(() => {
-                refreshButton.textContent = originalText;
-                refreshButton.disabled = false;
-            }, 1500);
-            
-        } catch (error) {
-            console.error('Błąd odświeżania:', error);
-            refreshButton.textContent = '❌ Błąd';
-            setTimeout(() => {
-                refreshButton.textContent = originalText;
-                refreshButton.disabled = false;
-            }, 1500);
         }
-    }
 
-    function generujWOS() {
-        const maszynista = document.getElementById("maszynista").value || "—";
-        const input = stations.trim();
-        if (input.length === 0) return;
+        function generujWOS() {
+            const maszynista = document.getElementById("maszynista").value || "—";
+            const input = stations.trim();
+            if (input.length === 0) return;
 
-        const wpisy = input.split(/[,;]\s*/).map(s => s.trim());
+            const wpisy = input.split(/[,;]\s*/).map(s => s.trim());
 
-        // Sprawdź czy jakakolwiek stacja z trasy znajduje się w bazie WOS
-        const znalezioneStacje = wpisy.filter(nazwaWp => {
-            const klucz = Object.keys(BAZA_OSTRZEZEN).find(k => normalizuj(k) === normalizuj(nazwaWp));
-            return klucz !== undefined;
-        });
+            const znalezioneStacje = wpisy.filter(nazwaWp => {
+                const klucz = Object.keys(BAZA_OSTRZEZEN).find(k => normalizuj(k) === normalizuj(nazwaWp));
+                return klucz !== undefined;
+            });
 
-        // Jeśli nie znaleziono żadnych stacji z WOS, wyświetl komunikat
-        if (znalezioneStacje.length === 0) {
-            let html = `
+            if (znalezioneStacje.length === 0) {
+                let html = `
             <h1 style="margin:0 0 12px; font-size:15pt; text-align:center; color: var(--text-color);">
                 Wykaz Ostrzeżeń Stałych<br>
                 oraz prędkości drogowych
@@ -841,23 +833,23 @@
             <span style="float:right;">Godzina wydruku: <b>${new Date().toLocaleTimeString('pl-PL')}</b></span>
             <span><br><br></span>
             <span>Wygenerowano dla pociągu: <b>${(() => {
-                const train = trainsData.filter(t => t.driverName === maszynista).find(t => t.timetable?.path);
-                const category = train?.timetable?.category || '';
-                const trainNo = train?.trainNo || '—';
-                return category ? `${category} ${trainNo}` : trainNo;
-            })()}</b></span>
+                        const train = trainsData.filter(t => t.driverName === maszynista).find(t => t.timetable?.path);
+                        const category = train?.timetable?.category || '';
+                        const trainNo = train?.trainNo || '—';
+                        return category ? `${category} ${trainNo}` : trainNo;
+                    })()}</b></span>
             
             <div class="warning-message" style="margin: 20px 0; text-align: center; font-size: 1.1em;">
                 <strong>ℹ️ Brak WOS dla danego rozkładu jazdy</strong><br>
                 Trasa pociągu nie zawiera stacji zdefiniowanych w bazie ostrzeżeń stałych.
             </div>`;
-            
-            document.getElementById("wynik").innerHTML = html;
-            document.getElementById('printButton').disabled = true;
-            return;
-        }
 
-        let html = `
+                document.getElementById("wynik").innerHTML = html;
+                document.getElementById('printButton').disabled = true;
+                return;
+            }
+
+            let html = `
         <h1 style="margin:0 0 12px; font-size:15pt; text-align:center; color: var(--text-color);">
             Wykaz Ostrzeżeń Stałych<br>
             oraz prędkości drogowych
@@ -865,66 +857,70 @@
         <span style="float:right;">Godzina wydruku: <b>${new Date().toLocaleTimeString('pl-PL')}</b></span>
         <span><br><br></span>
         <span>Wygenerowano dla pociągu: <b>${(() => {
-                const train = trainsData.filter(t => t.driverName === maszynista).find(t => t.timetable?.path);
-                const category = train?.timetable?.category || '';
-                const trainNo = train?.trainNo || '—';
-                return category ? `${category} ${trainNo}` : trainNo;
-            })()}</b></span>
+                    const train = trainsData.filter(t => t.driverName === maszynista).find(t => t.timetable?.path);
+                    const category = train?.timetable?.category || '';
+                    const trainNo = train?.trainNo || '—';
+                    return category ? `${category} ${trainNo}` : trainNo;
+                })()}</b></span>
 
-        <table class="wos-table">
-          <thead>
-            <tr>
-              <th style="width: 3em;">Nazwa szlaku lub posterunku</th>
-              <th colspan="2">Lokalizacja</th>
-              <th style="width: 36%;">Przyczyna</th>
-              <th style="width: 3.5em;">Tor</th>
-              <th colspan="2">Prędkość</th>
-              <th style="width: 24%;">Uwagi</th>
-            </tr>
-            <tr>
-              <th></th>
-              <th>od km</th>
-              <th>do km</th>
-              <th></th>
-              <th></th>
-              <th>niep.</th>
-              <th>parz.</th>
-              <th></th>
-            </tr>
-          </thead>
-          <tbody>`;
+        ${rysujWOS(wpisy)}`;
+            document.getElementById("wynik").innerHTML = html;
+            document.getElementById('printButton').disabled = false;
+        }
 
-        wpisy.forEach(nazwaWp => {
-            const klucz = Object.keys(BAZA_OSTRZEZEN).find(k => normalizuj(k) === normalizuj(nazwaWp));
-            if (!klucz) return;
-
-            html += `<tr><td colspan="8" class="station-header">${klucz}</td></tr>`;
-            const dane = [...BAZA_OSTRZEZEN[klucz]].sort((a,b) => parseFloat(a[0] || a[1] || 0) - parseFloat(b[0] || b[1] || 0));
-
-            dane.forEach(([stacjaSzlak, od, doo, przyczyna, tor, vNiep, vPar, uwagi]) => {
-                html += `
+        function rysujWOS(wpisy) {
+            html = `<table class="wos-table">
+            <thead>
                 <tr>
-                  <td style="text-align:left;">${stacjaSzlak || '—'}</td>
-                  <td>${formatKm(od)}</td>
-                  <td>${formatKm(doo)}</td>
-                  <td style="text-align:left;">${przyczyna || '—'}</td>
-                  <td>${tor || '—'}</td>
-                  <td>${vNiep || '—'}</td>
-                  <td>${vPar || '—'}</td>
-                  <td style="text-align:left;">${uwagi || '—'}</td>
-                </tr>`;
-            });
-        });
+                    <th style="width: 3em;" rowspan="2">Nazwa szlaku lub posterunku</th>
+                    <th colspan="2">Lokalizacja</th>
+                    <th style="width: 36%;" rowspan="2">Przyczyna</th>
+                    <th style="width: 3.5em;" rowspan="2">Tor</th>
+                    <th colspan="2">Prędkość</th>
+                    <th style="width: 24%;" rowspan="2">Uwagi</th>
+                </tr>
+                <tr>
+                    <th>od km</th>
+                    <th>do km</th>
+                    <th>niep.</th>
+                    <th>parz.</th>
+                </tr>
+            </thead>
+            <tbody>`;
 
-        html += "</tbody></table>";
-        document.getElementById("wynik").innerHTML = html;
-        document.getElementById('printButton').disabled = false;
-    }
-</script>
-<span style="float: right;"> Blue & Kacper9 & bagi2424</span><br><br>
-<section class="no-print">
-    <span style="float: right;">version 1.1.0</span><br><br>
-    <span style="float: right; font-size: 0.8em;">Dane pobierane za pośrednictwem API: <a href="https://stacjownik-td2.spythere.eu">Stacjownik</a></span>
-</section>
+            wpisy.forEach(nazwaWp => {
+                const klucz = Object.keys(BAZA_OSTRZEZEN).find(k => normalizuj(k) === normalizuj(nazwaWp));
+                if (!klucz) return;
+
+                html += `<tr><td colspan="8" class="station-header">${klucz}</td></tr>`;
+                const dane = [...BAZA_OSTRZEZEN[klucz]].sort((a, b) => parseFloat(a[0] || a[1] || 0) - parseFloat(b[0] || b[1] || 0));
+
+                dane.forEach((item) => {
+                    html += `
+                <tr>
+                  <td>${item["stacja"]}</td>
+                  <td>${formatKm(item["odkm"])}</td>
+                  <td>${formatKm(item["dokm"])}</td>
+                  <td style="text-align:left;">${item["przyczyna"] || '—'}</td>
+                  <td>${item["tor"] || '—'}</td>
+                  <td>${item["vniep"] || '—'}</td>
+                  <td>${item["vparz"] || '—'}</td>
+                  <td style="text-align:left;">${item["uwagi"] || '—'}</td>
+                </tr>`;
+                });
+            });
+
+            html += "</tbody></table>";
+
+            return html;
+        }
+    </script>
+    <span style="float: right;"> Blue & Kacper9 & bagi2424</span><br><br>
+    <section class="no-print">
+        <span style="float: right;">version 1.1.3</span><br><br>
+        <span style="float: right; font-size: 0.8em;">Dane pobierane za pośrednictwem API: <a
+                href="https://stacjownik-td2.spythere.eu">Stacjownik</a></span>
+    </section>
 </body>
+
 </html>
