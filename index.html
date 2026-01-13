@@ -10,7 +10,7 @@
             data-website-id="0b96c829-a037-4b08-93d8-b56a166dd79b"
             data-do-not-track="true"></script>
     
-    <title>1WOS TD2 - Generator ostrzeżeń stałych</title>
+    <title>WOS TD2 - Generator ostrzeżeń stałych</title>
     <style>
         :root {
             --bg-body: #f9f9f9;
@@ -694,7 +694,6 @@
             return;
         }
 
-        let lp = 1;
         let html = `
         <h1 style="margin:0 0 12px; font-size:15pt; text-align:center; color: var(--text-color);">
             Wykaz Ostrzeżeń Stałych<br>
@@ -707,7 +706,7 @@
         <table class="wos-table">
           <thead>
             <tr>
-              <th style="width: 3em;">Lp.</th>
+              <th style="width: 3em;">Nazwa szlaku lub posterunku</th>
               <th colspan="2">Lokalizacja</th>
               <th style="width: 36%;">Przyczyna</th>
               <th style="width: 3.5em;">Tor</th>
@@ -730,10 +729,10 @@
         html += `<tr><td colspan="8" class="station-header">${klucz}</td></tr>`;
         const dane = [...BAZA_OSTRZEZEN[klucz]].sort((a,b) => parseFloat(a[0] || a[1] || 0) - parseFloat(b[0] || b[1] || 0));
 
-        dane.forEach(([od, doo, przyczyna, tor, vNiep, vPar, uwagi]) => {
+        dane.forEach(([stacjaSzlak, od, doo, przyczyna, tor, vNiep, vPar, uwagi]) => {
             html += `
             <tr>
-              <td>${lp++}</td>
+              <td style="text-align:left;">${stacjaSzlak || '—'}</td>
               <td>${formatKm(od)}</td>
               <td>${formatKm(doo)}</td>
               <td style="text-align:left;">${przyczyna || '—'}</td>
@@ -825,7 +824,6 @@
         if (input.length === 0) return;
 
         const wpisy = input.split(/[,;]\s*/).map(s => s.trim());
-        let lp = 1;
 
         // Sprawdź czy jakakolwiek stacja z trasy znajduje się w bazie WOS
         const znalezioneStacje = wpisy.filter(nazwaWp => {
@@ -876,7 +874,7 @@
         <table class="wos-table">
           <thead>
             <tr>
-              <th style="width: 3em;">Lp.</th>
+              <th style="width: 3em;">Nazwa szlaku lub posterunku</th>
               <th colspan="2">Lokalizacja</th>
               <th style="width: 36%;">Przyczyna</th>
               <th style="width: 3.5em;">Tor</th>
@@ -903,10 +901,10 @@
             html += `<tr><td colspan="8" class="station-header">${klucz}</td></tr>`;
             const dane = [...BAZA_OSTRZEZEN[klucz]].sort((a,b) => parseFloat(a[0] || a[1] || 0) - parseFloat(b[0] || b[1] || 0));
 
-            dane.forEach(([od, doo, przyczyna, tor, vNiep, vPar, uwagi]) => {
+            dane.forEach(([stacjaSzlak, od, doo, przyczyna, tor, vNiep, vPar, uwagi]) => {
                 html += `
                 <tr>
-                  <td>${lp++}</td>
+                  <td style="text-align:left;">${stacjaSzlak || '—'}</td>
                   <td>${formatKm(od)}</td>
                   <td>${formatKm(doo)}</td>
                   <td style="text-align:left;">${przyczyna || '—'}</td>
