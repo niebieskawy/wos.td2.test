@@ -1,317 +1,2018 @@
 const BAZA_OSTRZEZEN = {
   "Aleksandrów Kujawski": [
-    ["90,356", "90,552", "zły stan techniczny rozjazdu nr 3 i 6", "1", "80", "80", "-"],
-    ["90,402", "90,540", "zły stan techniczny rozjazdu nr 4 i 5", "2", "80", "80", "-"],
-    ["90,530", "90,570", "zły stan techniczny rozjazdu nr 7", "104", "10", "10", "dotyczy jazd na wprost i na kierunek zwrotny"]
+    {
+      "stacja": "",
+      "odkm": "90,356",
+      "dokm": "90,552",
+      "przyczyna": "zły stan techniczny rozjazdu nr 3 i 6",
+      "tor": "1",
+      "vniep": "80",
+      "vparz": "80",
+      "uwagi": "-"
+    },
+    {
+      "stacja": "",
+      "odkm": "90,402",
+      "dokm": "90,540",
+      "przyczyna": "zły stan techniczny rozjazdu nr 4 i 5",
+      "tor": "2",
+      "vniep": "80",
+      "vparz": "80",
+      "uwagi": "-"
+    },
+    {
+      "stacja": "",
+      "odkm": "90,530",
+      "dokm": "90,570",
+      "przyczyna": "zły stan techniczny rozjazdu nr 7",
+      "tor": "104",
+      "vniep": "10",
+      "vparz": "10",
+      "uwagi": "dotyczy jazd na wprost i na kierunek zwrotny"
+    }
   ],
   "Arkadia Zdrój 2012": [
-    ["3,270", "3,280", "zły stan wiaduktu", "1", "20", "20", ""],
-    ["30,672", "31,480", "zły stan toru", "3, 5", "20", "20", ""],
-    ["31,540", "31,573", "zły stan rozjazdu nr 23", "1", "40", "40", ""],
-    ["34,396", "34,845", "ostry łuk R396, krótkie krzywe przejściowe", "1, 2", "50", "50", ""]
+    {
+      "stacja": "",
+      "odkm": "3,270",
+      "dokm": "3,280",
+      "przyczyna": "zły stan wiaduktu",
+      "tor": "1",
+      "vniep": "20",
+      "vparz": "20",
+      "uwagi": ""
+    },
+    {
+      "stacja": "",
+      "odkm": "30,672",
+      "dokm": "31,480",
+      "przyczyna": "zły stan toru",
+      "tor": "3, 5",
+      "vniep": "20",
+      "vparz": "20",
+      "uwagi": ""
+    },
+    {
+      "stacja": "",
+      "odkm": "31,540",
+      "dokm": "31,573",
+      "przyczyna": "zły stan rozjazdu nr 23",
+      "tor": "1",
+      "vniep": "40",
+      "vparz": "40",
+      "uwagi": ""
+    },
+    {
+      "stacja": "",
+      "odkm": "34,396",
+      "dokm": "34,845",
+      "przyczyna": "ostry łuk R396, krótkie krzywe przejściowe",
+      "tor": "1, 2",
+      "vniep": "50",
+      "vparz": "50",
+      "uwagi": ""
+    }
   ],
   "Arkadia Zdrój 2022": [
-    ["30,318", "30,335", "zły stan techniczny wiaduktu", "1, 2", "70", "70", "doraźne"],
-    ["0,563", "0,585", "zły stan techniczny wiaduktu", "4", "70", "70", "doraźne"]
+    {
+      "stacja": "",
+      "odkm": "30,318",
+      "dokm": "30,335",
+      "przyczyna": "zły stan techniczny wiaduktu",
+      "tor": "1, 2",
+      "vniep": "70",
+      "vparz": "70",
+      "uwagi": "doraźne"
+    },
+    {
+      "stacja": "",
+      "odkm": "0,563",
+      "dokm": "0,585",
+      "przyczyna": "zły stan techniczny wiaduktu",
+      "tor": "4",
+      "vniep": "70",
+      "vparz": "70",
+      "uwagi": "doraźne"
+    }
   ],
   "Blaszki": [
-    ["127,588", "127,849", "zły stan toru", "2", "60", "60", ""]
+    {
+      "stacja": "",
+      "odkm": "127,588",
+      "dokm": "127,849",
+      "przyczyna": "zły stan toru",
+      "tor": "2",
+      "vniep": "60",
+      "vparz": "60",
+      "uwagi": ""
+    }
   ],
   "Brenno": [
-    ["56,121", "56,188", "zły stan rozjazdu nr 5", "1", "60", "60", ""],
-    ["57,171", "57,232", "zły stan rozjazdu nr 23", "4, 6", "20", "20", "Nowe! ograniczenie doraźne"]
+    {
+      "stacja": "",
+      "odkm": "56,121",
+      "dokm": "56,188",
+      "przyczyna": "zły stan rozjazdu nr 5",
+      "tor": "1",
+      "vniep": "60",
+      "vparz": "60",
+      "uwagi": ""
+    },
+    {
+      "stacja": "",
+      "odkm": "57,171",
+      "dokm": "57,232",
+      "przyczyna": "zły stan rozjazdu nr 23",
+      "tor": "4, 6",
+      "vniep": "20",
+      "vparz": "20",
+      "uwagi": "Nowe! ograniczenie doraźne"
+    }
   ],
   "Brzezinka Średzka": [
-    ["13,800", "15,100", "zły stan toru", "2", "40", "40", "273"],
-    ["19,960", "20,195", "zły stan toru", "1", "70", "70", ""],
-    ["20,620", "21,400", "zły stan toru", "4", "20", "20", ""],
-    ["21,480", "21,513", "zły stan toru", "2", "100", "100", ""],
-    ["21,530", "21,890", "zły stan toru", "1", "70", "70", ""],
-    ["22,486", "22,926", "brak widoczności na przejeździe w km 22,926", "1", "70", "-", ""],
-    ["22,926", "23,296", "brak widoczności na przejeździe w km 22,926", "1", "-", "60", ""],
-    ["22,926", "23,926", "brak widoczności na przejeździe w km 22,926", "2", "-", "50", ""]
+    {
+      "stacja": "",
+      "odkm": "13,800",
+      "dokm": "15,100",
+      "przyczyna": "zły stan toru",
+      "tor": "2",
+      "vniep": "40",
+      "vparz": "40",
+      "uwagi": "273"
+    },
+    {
+      "stacja": "",
+      "odkm": "19,960",
+      "dokm": "20,195",
+      "przyczyna": "zły stan toru",
+      "tor": "1",
+      "vniep": "70",
+      "vparz": "70",
+      "uwagi": ""
+    },
+    {
+      "stacja": "",
+      "odkm": "20,620",
+      "dokm": "21,400",
+      "przyczyna": "zły stan toru",
+      "tor": "4",
+      "vniep": "20",
+      "vparz": "20",
+      "uwagi": ""
+    },
+    {
+      "stacja": "",
+      "odkm": "21,480",
+      "dokm": "21,513",
+      "przyczyna": "zły stan toru",
+      "tor": "2",
+      "vniep": "100",
+      "vparz": "100",
+      "uwagi": ""
+    },
+    {
+      "stacja": "",
+      "odkm": "21,530",
+      "dokm": "21,890",
+      "przyczyna": "zły stan toru",
+      "tor": "1",
+      "vniep": "70",
+      "vparz": "70",
+      "uwagi": ""
+    },
+    {
+      "stacja": "",
+      "odkm": "22,486",
+      "dokm": "22,926",
+      "przyczyna": "brak widoczności na przejeździe w km 22,926",
+      "tor": "1",
+      "vniep": "70",
+      "vparz": "-",
+      "uwagi": ""
+    },
+    {
+      "stacja": "",
+      "odkm": "22,926",
+      "dokm": "23,296",
+      "przyczyna": "brak widoczności na przejeździe w km 22,926",
+      "tor": "1",
+      "vniep": "-",
+      "vparz": "60",
+      "uwagi": ""
+    },
+    {
+      "stacja": "",
+      "odkm": "22,926",
+      "dokm": "23,926",
+      "przyczyna": "brak widoczności na przejeździe w km 22,926",
+      "tor": "2",
+      "vniep": "-",
+      "vparz": "50",
+      "uwagi": ""
+    }
   ],
   "Chełmik Wołowski": [
-    ["39.430", "39.500", "Zły stan przejścia rozjazdowego", "-", "20", "20", "dotyczy przejścia 5-6, jazda zwrotna"]
+    {
+      "stacja": "",
+      "odkm": "39.430",
+      "dokm": "39.500",
+      "przyczyna": "Zły stan przejścia rozjazdowego",
+      "tor": "-",
+      "vniep": "20",
+      "vparz": "20",
+      "uwagi": "dotyczy przejścia 5-6, jazda zwrotna"
+    }
   ],
   "Dobrzyca Towarowa": [
-    ["7,757", "8,009", "Zły stan rozjazdów 201,203,208,272", "202", "20", "20", "* )"],
-    ["7,839", "8,014", "Zły stan głowicy rozj. 230-251,231-254", "10", "10", "", ""],
-    ["4,029", "4,029", "punkt kontrolny DSAT", "2", "-", "-", "utrzymać stałą prędkość dla całej długości składu"]
+    {
+      "stacja": "",
+      "odkm": "7,757",
+      "dokm": "8,009",
+      "przyczyna": "Zły stan rozjazdów 201,203,208,272",
+      "tor": "202",
+      "vniep": "20",
+      "vparz": "20",
+      "uwagi": "* )"
+    },
+    {
+      "stacja": "",
+      "odkm": "7,839",
+      "dokm": "8,014",
+      "przyczyna": "Zły stan głowicy rozj. 230-251,231-254",
+      "tor": "10",
+      "vniep": "10",
+      "vparz": "",
+      "uwagi": ""
+    },
+    {
+      "stacja": "",
+      "odkm": "4,029",
+      "dokm": "4,029",
+      "przyczyna": "punkt kontrolny DSAT",
+      "tor": "2",
+      "vniep": "-",
+      "vparz": "-",
+      "uwagi": "utrzymać stałą prędkość dla całej długości składu"
+    }
   ],
   "Dobrzyniec": [
-    ["102,992", "103,006", "tor po naprawie", "1", "40", "40", ""],
-    ["104,773", "105,491", "zły stan techniczny toru", "4", "20", "20", "doraźne"],
-    ["109,532", "109,642", "zły stan podkładów", "2", "80", "80", ""],
-    ["120,721", "120,729", "zły stan obiektu inżynierskiego", "1, 2", "60", "60", "doraźne"]
+    {
+      "stacja": "",
+      "odkm": "102,992",
+      "dokm": "103,006",
+      "przyczyna": "tor po naprawie",
+      "tor": "1",
+      "vniep": "40",
+      "vparz": "40",
+      "uwagi": ""
+    },
+    {
+      "stacja": "",
+      "odkm": "104,773",
+      "dokm": "105,491",
+      "przyczyna": "zły stan techniczny toru",
+      "tor": "4",
+      "vniep": "20",
+      "vparz": "20",
+      "uwagi": "doraźne"
+    },
+    {
+      "stacja": "",
+      "odkm": "109,532",
+      "dokm": "109,642",
+      "przyczyna": "zły stan podkładów",
+      "tor": "2",
+      "vniep": "80",
+      "vparz": "80",
+      "uwagi": ""
+    },
+    {
+      "stacja": "",
+      "odkm": "120,721",
+      "dokm": "120,729",
+      "przyczyna": "zły stan obiektu inżynierskiego",
+      "tor": "1, 2",
+      "vniep": "60",
+      "vparz": "60",
+      "uwagi": "doraźne"
+    }
   ],
   "Dziewoszyce": [
-    ["74.243", "77.337", "zły stan podrozjezdnic w rozjazdach 2 i 3", "1", "60", "60", ""],
-    ["77.451", "77.463", "ograniczona widoczność na przejeździe", "1, 2", "20", "20", "tylko czoło"]
+    {
+      "stacja": "",
+      "odkm": "74.243",
+      "dokm": "77.337",
+      "przyczyna": "zły stan podrozjezdnic w rozjazdach 2 i 3",
+      "tor": "1",
+      "vniep": "60",
+      "vparz": "60",
+      "uwagi": ""
+    },
+    {
+      "stacja": "",
+      "odkm": "77.451",
+      "dokm": "77.463",
+      "przyczyna": "ograniczona widoczność na przejeździe",
+      "tor": "1, 2",
+      "vniep": "20",
+      "vparz": "20",
+      "uwagi": "tylko czoło"
+    }
   ],
   "Glinnik": [
-    ["48,200", "48,530", "ograniczona widoczność na przejeździe", "1", "50", "", "tylko dla czoła pociągu"],
-    ["48,510", "48,800", "ograniczona widoczność na przejeździe", "1", "", "50", "tylko dla czoła pociągu"],
-    ["51,550", "51,950", "ograniczona widoczność na przejeździe", "1", "70", "", "tylko dla czoła pociągu"],
-    ["52,250", "52,590", "ograniczona widoczność na przejeździe", "1", "60", "", "tylko dla czoła pociągu"],
-    ["52,580", "52,920", "ograniczona widoczność na przejeździe", "1", "", "60", "tylko dla czoła pociągu"],
-    ["53,600", "53,890", "ograniczona widoczność na przejeździe", "1", "50", "", "tylko dla czoła pociągu"]
+    {
+      "stacja": "",
+      "odkm": "48,200",
+      "dokm": "48,530",
+      "przyczyna": "ograniczona widoczność na przejeździe",
+      "tor": "1",
+      "vniep": "50",
+      "vparz": "",
+      "uwagi": "tylko dla czoła pociągu"
+    },
+    {
+      "stacja": "",
+      "odkm": "48,510",
+      "dokm": "48,800",
+      "przyczyna": "ograniczona widoczność na przejeździe",
+      "tor": "1",
+      "vniep": "",
+      "vparz": "50",
+      "uwagi": "tylko dla czoła pociągu"
+    },
+    {
+      "stacja": "",
+      "odkm": "51,550",
+      "dokm": "51,950",
+      "przyczyna": "ograniczona widoczność na przejeździe",
+      "tor": "1",
+      "vniep": "70",
+      "vparz": "",
+      "uwagi": "tylko dla czoła pociągu"
+    },
+    {
+      "stacja": "",
+      "odkm": "52,250",
+      "dokm": "52,590",
+      "przyczyna": "ograniczona widoczność na przejeździe",
+      "tor": "1",
+      "vniep": "60",
+      "vparz": "",
+      "uwagi": "tylko dla czoła pociągu"
+    },
+    {
+      "stacja": "",
+      "odkm": "52,580",
+      "dokm": "52,920",
+      "przyczyna": "ograniczona widoczność na przejeździe",
+      "tor": "1",
+      "vniep": "",
+      "vparz": "60",
+      "uwagi": "tylko dla czoła pociągu"
+    },
+    {
+      "stacja": "",
+      "odkm": "53,600",
+      "dokm": "53,890",
+      "przyczyna": "ograniczona widoczność na przejeździe",
+      "tor": "1",
+      "vniep": "50",
+      "vparz": "",
+      "uwagi": "tylko dla czoła pociągu"
+    }
   ],
   "Gostynin": [
-    ["27,445", "27,460", "warunki miejscowe przejazd", "1", "70", "70", "* )"],
-    ["28,200", "28,920", "zły stan toru", "4", "20", "20", ""],
-    ["31,651", "31,984", "ograniczona widoczność na przejeździe", "1", "60", "-", "Nowe! * )"]
+    {
+      "stacja": "",
+      "odkm": "27,445",
+      "dokm": "27,460",
+      "przyczyna": "warunki miejscowe przejazd",
+      "tor": "1",
+      "vniep": "70",
+      "vparz": "70",
+      "uwagi": "* )"
+    },
+    {
+      "stacja": "",
+      "odkm": "28,200",
+      "dokm": "28,920",
+      "przyczyna": "zły stan toru",
+      "tor": "4",
+      "vniep": "20",
+      "vparz": "20",
+      "uwagi": ""
+    },
+    {
+      "stacja": "",
+      "odkm": "31,651",
+      "dokm": "31,984",
+      "przyczyna": "ograniczona widoczność na przejeździe",
+      "tor": "1",
+      "vniep": "60",
+      "vparz": "-",
+      "uwagi": "Nowe! * )"
+    }
   ],
   "Grębów": [
-    ["6,028", "6,567", "układ geometryczny toru", "1", "80", "80", ""]
+    {
+      "stacja": "",
+      "odkm": "6,028",
+      "dokm": "6,567",
+      "przyczyna": "układ geometryczny toru",
+      "tor": "1",
+      "vniep": "80",
+      "vparz": "80",
+      "uwagi": ""
+    }
   ],
   "Gryfów Śląski": [
-    ["163,700", "163,920", "zły stan techniczny toru", "1", "40", "40", ""]
+    {
+      "stacja": "",
+      "odkm": "163,700",
+      "dokm": "163,920",
+      "przyczyna": "zły stan techniczny toru",
+      "tor": "1",
+      "vniep": "40",
+      "vparz": "40",
+      "uwagi": ""
+    }
   ],
   "Hel": [
-    ["61,506", "61,638", "brak drogi hamowania", "4", "20", "-", "* )"]
+    {
+      "stacja": "",
+      "odkm": "61,506",
+      "dokm": "61,638",
+      "przyczyna": "brak drogi hamowania",
+      "tor": "4",
+      "vniep": "20",
+      "vparz": "-",
+      "uwagi": "* )"
+    }
   ],
   "Imielin 2015": [
-    ["9,500", "11,000", "zły stan toru", "2", "30", "30", ""],
-    ["9,550", "11,000", "zły stan toru", "1", "30", "30", ""],
-    ["11,000", "11,250", "zły stan toru", "1, 2", "20", "20", ""],
-    ["11,250", "12,000", "zły stan toru", "1", "30", "30", ""],
-    ["12,621", "13,173", "ograniczona widoczność na przejeździe", "1", "40", "40", ""]
+    {
+      "stacja": "",
+      "odkm": "9,500",
+      "dokm": "11,000",
+      "przyczyna": "zły stan toru",
+      "tor": "2",
+      "vniep": "30",
+      "vparz": "30",
+      "uwagi": ""
+    },
+    {
+      "stacja": "",
+      "odkm": "9,550",
+      "dokm": "11,000",
+      "przyczyna": "zły stan toru",
+      "tor": "1",
+      "vniep": "30",
+      "vparz": "30",
+      "uwagi": ""
+    },
+    {
+      "stacja": "",
+      "odkm": "11,000",
+      "dokm": "11,250",
+      "przyczyna": "zły stan toru",
+      "tor": "1, 2",
+      "vniep": "20",
+      "vparz": "20",
+      "uwagi": ""
+    },
+    {
+      "stacja": "",
+      "odkm": "11,250",
+      "dokm": "12,000",
+      "przyczyna": "zły stan toru",
+      "tor": "1",
+      "vniep": "30",
+      "vparz": "30",
+      "uwagi": ""
+    },
+    {
+      "stacja": "",
+      "odkm": "12,621",
+      "dokm": "13,173",
+      "przyczyna": "ograniczona widoczność na przejeździe",
+      "tor": "1",
+      "vniep": "40",
+      "vparz": "40",
+      "uwagi": ""
+    }
   ],
   "Kielce": [
-    ["179,000", "179,400", "słabe miejsce w podtorzu", "2", "60", "60", ""]
+    {
+      "stacja": "",
+      "odkm": "179,000",
+      "dokm": "179,400",
+      "przyczyna": "słabe miejsce w podtorzu",
+      "tor": "2",
+      "vniep": "60",
+      "vparz": "60",
+      "uwagi": ""
+    }
   ],
   "Kieły": [
-    ["15,165", "15,180", "ograniczona widoczność na przejeździe", "1", "20", "20", "tylko czoło"]
+    {
+      "stacja": "",
+      "odkm": "15,165",
+      "dokm": "15,180",
+      "przyczyna": "ograniczona widoczność na przejeździe",
+      "tor": "1",
+      "vniep": "20",
+      "vparz": "20",
+      "uwagi": "tylko czoło"
+    }
   ],
   "Kłudna": [
-    ["212,350", "213,250", "zły stan szyn", "3", "20", "20", ""],
-    ["212,360", "213,200", "zły stan szyn", "4", "30", "30", ""]
+    {
+      "stacja": "",
+      "odkm": "212,350",
+      "dokm": "213,250",
+      "przyczyna": "zły stan szyn",
+      "tor": "3",
+      "vniep": "20",
+      "vparz": "20",
+      "uwagi": ""
+    },
+    {
+      "stacja": "",
+      "odkm": "212,360",
+      "dokm": "213,200",
+      "przyczyna": "zły stan szyn",
+      "tor": "4",
+      "vniep": "30",
+      "vparz": "30",
+      "uwagi": ""
+    }
   ],
   "Koszalin": [
-    ["197,590", "198,100", "krótkie krzywe przejściowe", "1", "100", "100", ""],
-    ["198,620", "198,653", "rozjazdy krzyżowe", "1", "100", "100", "Rkpd 42"],
-    ["0,520", "0,870", "mały promień łuku", "1", "40", "40", ""]
+    {
+      "stacja": "",
+      "odkm": "197,590",
+      "dokm": "198,100",
+      "przyczyna": "krótkie krzywe przejściowe",
+      "tor": "1",
+      "vniep": "100",
+      "vparz": "100",
+      "uwagi": ""
+    },
+    {
+      "stacja": "",
+      "odkm": "198,620",
+      "dokm": "198,653",
+      "przyczyna": "rozjazdy krzyżowe",
+      "tor": "1",
+      "vniep": "100",
+      "vparz": "100",
+      "uwagi": "Rkpd 42"
+    },
+    {
+      "stacja": "",
+      "odkm": "0,520",
+      "dokm": "0,870",
+      "przyczyna": "mały promień łuku",
+      "tor": "1",
+      "vniep": "40",
+      "vparz": "40",
+      "uwagi": ""
+    }
   ],
   "Kowalewo": [
-    ["0,562", "0,723", "zły stan podrozjazdnic rozj. 25,27,28", "5", "30", "30", ""],
-    ["2,261", "2,279", "przekroczony iloczyn ruchu na przejeździe", "1, 2", "50", "50", ""],
-    ["216,635", "216,678", "zły stan wiaduktu", "1, 2", "40", "40", ""],
-    ["218,738", "219,926", "zły stan podkładów", "3, 4", "20", "20", "doraźne"],
-    ["218,858", "219,740", "zły stan podtorza", "11", "20", "20", ""],
-    ["220,537", "221,177", "zły stan toru i podtorza", "1, 2", "80", "80", ""]
+    {
+      "stacja": "",
+      "odkm": "0,562",
+      "dokm": "0,723",
+      "przyczyna": "zły stan podrozjazdnic rozj. 25,27,28",
+      "tor": "5",
+      "vniep": "30",
+      "vparz": "30",
+      "uwagi": ""
+    },
+    {
+      "stacja": "",
+      "odkm": "2,261",
+      "dokm": "2,279",
+      "przyczyna": "przekroczony iloczyn ruchu na przejeździe",
+      "tor": "1, 2",
+      "vniep": "50",
+      "vparz": "50",
+      "uwagi": ""
+    },
+    {
+      "stacja": "",
+      "odkm": "216,635",
+      "dokm": "216,678",
+      "przyczyna": "zły stan wiaduktu",
+      "tor": "1, 2",
+      "vniep": "40",
+      "vparz": "40",
+      "uwagi": ""
+    },
+    {
+      "stacja": "",
+      "odkm": "218,738",
+      "dokm": "219,926",
+      "przyczyna": "zły stan podkładów",
+      "tor": "3, 4",
+      "vniep": "20",
+      "vparz": "20",
+      "uwagi": "doraźne"
+    },
+    {
+      "stacja": "",
+      "odkm": "218,858",
+      "dokm": "219,740",
+      "przyczyna": "zły stan podtorza",
+      "tor": "11",
+      "vniep": "20",
+      "vparz": "20",
+      "uwagi": ""
+    },
+    {
+      "stacja": "",
+      "odkm": "220,537",
+      "dokm": "221,177",
+      "przyczyna": "zły stan toru i podtorza",
+      "tor": "1, 2",
+      "vniep": "80",
+      "vparz": "80",
+      "uwagi": ""
+    }
   ],
   "Kraśnica": [
-    ["102,315", "102,329", "zły stan techniczny mostu", "1,2", "40", "40", ""],
-    ["108,334", "108,341", "zły stan rozjazdu nr 200", "204", "20", "20", "zwrotny, doraźne"],
-    ["108,339", "108,481", "geometria łuku", "203", "25", "25", ""]
+    {
+      "stacja": "",
+      "odkm": "102,315",
+      "dokm": "102,329",
+      "przyczyna": "zły stan techniczny mostu",
+      "tor": "1,2",
+      "vniep": "40",
+      "vparz": "40",
+      "uwagi": ""
+    },
+    {
+      "stacja": "",
+      "odkm": "108,334",
+      "dokm": "108,341",
+      "przyczyna": "zły stan rozjazdu nr 200",
+      "tor": "204",
+      "vniep": "20",
+      "vparz": "20",
+      "uwagi": "zwrotny, doraźne"
+    },
+    {
+      "stacja": "",
+      "odkm": "108,339",
+      "dokm": "108,481",
+      "przyczyna": "geometria łuku",
+      "tor": "203",
+      "vniep": "25",
+      "vparz": "25",
+      "uwagi": ""
+    }
   ],
   "Krzemienice": [
-    ["257,265", "257,315", "zły stan obiektu inżynierskiego", "1", "40", "40", ""]
+    {
+      "stacja": "",
+      "odkm": "257,265",
+      "dokm": "257,315",
+      "przyczyna": "zły stan obiektu inżynierskiego",
+      "tor": "1",
+      "vniep": "40",
+      "vparz": "40",
+      "uwagi": ""
+    }
   ],
   "Kszęty": [
-    ["131,964", "131,972", "zły stan toru", "1,2", "20", "20", ""]
+    {
+      "stacja": "",
+      "odkm": "131,964",
+      "dokm": "131,972",
+      "przyczyna": "zły stan toru",
+      "tor": "1,2",
+      "vniep": "20",
+      "vparz": "20",
+      "uwagi": ""
+    }
   ],
   "LCS Czerwieńsk": [
-    ["166,160", "166,860", "zaniżone parametry toru i rozjazdów", "7, 9, 11", "20", "20", ""],
-    ["43,197", "44,817", "-", "6", "60", "60", "Vd) linia 358"],
-    ["171,630", "172,080", "zaniżone parametry konstrukcji obiektu", "2", "50", "50", ""]
+    {
+      "stacja": "",
+      "odkm": "166,160",
+      "dokm": "166,860",
+      "przyczyna": "zaniżone parametry toru i rozjazdów",
+      "tor": "7, 9, 11",
+      "vniep": "20",
+      "vparz": "20",
+      "uwagi": ""
+    },
+    {
+      "stacja": "",
+      "odkm": "43,197",
+      "dokm": "44,817",
+      "przyczyna": "-",
+      "tor": "6",
+      "vniep": "60",
+      "vparz": "60",
+      "uwagi": "Vd) linia 358"
+    },
+    {
+      "stacja": "",
+      "odkm": "171,630",
+      "dokm": "172,080",
+      "przyczyna": "zaniżone parametry konstrukcji obiektu",
+      "tor": "2",
+      "vniep": "50",
+      "vparz": "50",
+      "uwagi": ""
+    }
   ],
   "LCS Głowno": [
-    ["32,600", "32,800", "zbyt mały promień łuku", "1", "90", "90", ""]
+    {
+      "stacja": "",
+      "odkm": "32,600",
+      "dokm": "32,800",
+      "przyczyna": "zbyt mały promień łuku",
+      "tor": "1",
+      "vniep": "90",
+      "vparz": "90",
+      "uwagi": ""
+    }
   ],
   "LCS Grodzisk Mazowiecki": [
-    ["4,707", "5,110", "brak drogi hamowania przed przejazdem km 4.702", "1", "-", "40", "przeciwny kierunek"]
+    {
+      "stacja": "",
+      "odkm": "4,707",
+      "dokm": "5,110",
+      "przyczyna": "brak drogi hamowania przed przejazdem km 4.702",
+      "tor": "1",
+      "vniep": "-",
+      "vparz": "40",
+      "uwagi": "przeciwny kierunek"
+    }
   ],
   "LCS Kleszczów": [
-    ["165,627", "166,954", "zły stan techniczny nawierzchni", "1", "120", "120", ""],
-    ["167,904", "167,928", "Nieprzystosowanie obiektu mostowego do v-max 160", "1", "120", "120", ""]
+    {
+      "stacja": "",
+      "odkm": "165,627",
+      "dokm": "166,954",
+      "przyczyna": "zły stan techniczny nawierzchni",
+      "tor": "1",
+      "vniep": "120",
+      "vparz": "120",
+      "uwagi": ""
+    },
+    {
+      "stacja": "",
+      "odkm": "167,904",
+      "dokm": "167,928",
+      "przyczyna": "Nieprzystosowanie obiektu mostowego do v-max 160",
+      "tor": "1",
+      "vniep": "120",
+      "vparz": "120",
+      "uwagi": ""
+    }
   ],
   "LCS Perzów": [
-    ["51,189", "51,637", "Zły stan toru", "11", "20", "20", ""]
+    {
+      "stacja": "",
+      "odkm": "51,189",
+      "dokm": "51,637",
+      "przyczyna": "Zły stan toru",
+      "tor": "11",
+      "vniep": "20",
+      "vparz": "20",
+      "uwagi": ""
+    }
   ],
   "Lisków": [
-    ["66,190", "66,976", "Zły stan toru", "6", "20", "20", "* )"],
-    ["66,248", "67,002", "Zły stan toru", "8", "20", "20", "* )"]
+    {
+      "stacja": "",
+      "odkm": "66,190",
+      "dokm": "66,976",
+      "przyczyna": "Zły stan toru",
+      "tor": "6",
+      "vniep": "20",
+      "vparz": "20",
+      "uwagi": "* )"
+    },
+    {
+      "stacja": "",
+      "odkm": "66,248",
+      "dokm": "67,002",
+      "przyczyna": "Zły stan toru",
+      "tor": "8",
+      "vniep": "20",
+      "vparz": "20",
+      "uwagi": "* )"
+    }
   ],
   "Lublinek": [
-    ["6,378", "7,282", "zły stan toru", "7", "20", "20", ""]
+    {
+      "stacja": "",
+      "odkm": "6,378",
+      "dokm": "7,282",
+      "przyczyna": "zły stan toru",
+      "tor": "7",
+      "vniep": "20",
+      "vparz": "20",
+      "uwagi": ""
+    }
   ],
   "Łapanów": [
-    ["143,017", "143,060", "zły stan obiektu inż.", "1", "50", "50", "doraźne"],
-    ["145,754", "146,545", "zły stan podtorza", "10", "30", "30", "doraźne"],
-    ["177,455", "177,566", "zły stan mostownic", "1,2", "70", "70", ""],
-    ["182,604", "182,631", "zły stan przepustu", "1,2", "100", "100", ""]
+    {
+      "stacja": "",
+      "odkm": "143,017",
+      "dokm": "143,060",
+      "przyczyna": "zły stan obiektu inż.",
+      "tor": "1",
+      "vniep": "50",
+      "vparz": "50",
+      "uwagi": "doraźne"
+    },
+    {
+      "stacja": "",
+      "odkm": "145,754",
+      "dokm": "146,545",
+      "przyczyna": "zły stan podtorza",
+      "tor": "10",
+      "vniep": "30",
+      "vparz": "30",
+      "uwagi": "doraźne"
+    },
+    {
+      "stacja": "",
+      "odkm": "177,455",
+      "dokm": "177,566",
+      "przyczyna": "zły stan mostownic",
+      "tor": "1,2",
+      "vniep": "70",
+      "vparz": "70",
+      "uwagi": ""
+    },
+    {
+      "stacja": "",
+      "odkm": "182,604",
+      "dokm": "182,631",
+      "przyczyna": "zły stan przepustu",
+      "tor": "1,2",
+      "vniep": "100",
+      "vparz": "100",
+      "uwagi": ""
+    }
   ],
   "Łódź Chojny": [
-    ["6,450", "6,660", "ograniczona widoczność na przejściu dla pieszych, zły stan wiaduktu", "1", "50", "50", ""],
-    ["6,450", "6,540", "zły stan wiaduktu", "2", "60", "60", ""]
+    {
+      "stacja": "",
+      "odkm": "6,450",
+      "dokm": "6,660",
+      "przyczyna": "ograniczona widoczność na przejściu dla pieszych, zły stan wiaduktu",
+      "tor": "1",
+      "vniep": "50",
+      "vparz": "50",
+      "uwagi": ""
+    },
+    {
+      "stacja": "",
+      "odkm": "6,450",
+      "dokm": "6,540",
+      "przyczyna": "zły stan wiaduktu",
+      "tor": "2",
+      "vniep": "60",
+      "vparz": "60",
+      "uwagi": ""
+    }
   ],
   "Nowa Wieś Wielka": [
-    ["-1,395", "0,200", "-", "?", "75", "50", "Vd) Linia 201, nieoznakowane"],
-    ["-1,270", "0,208", "-", "?", "55", "50", "Vd) Linia 201, nieoznakowane"],
-    ["344,923", "345,100", "zły stan techniczny nawierzchni", "1", "20", "20", "131"],
-    ["344,985", "345,150", "zły stan techniczny nawierzchni", "3", "10", "10", ""],
-    ["345,079", "345,179", "układ geometryczny toru - łącznik rozj. 12 i 13", "1, 2", "30", "30", "kierunek zwrotny, NIEOZNAKOWANE!"],
-    ["345,143", "345,177", "zły stan techniczny rozjazdu 16", "1", "20", "20", "wprost i zwrotny, NIEOZNAKOWANE!"],
-    ["345,851", "345,881", "zły stan techniczny rozjazdu 65", "1", "15", "10", "wprost i zwrotny, NIEOZNAKOWANE!"]
+    {
+      "stacja": "",
+      "odkm": "-1,395",
+      "dokm": "0,200",
+      "przyczyna": "-",
+      "tor": "?",
+      "vniep": "75",
+      "vparz": "50",
+      "uwagi": "Vd) Linia 201, nieoznakowane"
+    },
+    {
+      "stacja": "",
+      "odkm": "-1,270",
+      "dokm": "0,208",
+      "przyczyna": "-",
+      "tor": "?",
+      "vniep": "55",
+      "vparz": "50",
+      "uwagi": "Vd) Linia 201, nieoznakowane"
+    },
+    {
+      "stacja": "",
+      "odkm": "344,923",
+      "dokm": "345,100",
+      "przyczyna": "zły stan techniczny nawierzchni",
+      "tor": "1",
+      "vniep": "20",
+      "vparz": "20",
+      "uwagi": "131"
+    },
+    {
+      "stacja": "",
+      "odkm": "344,985",
+      "dokm": "345,150",
+      "przyczyna": "zły stan techniczny nawierzchni",
+      "tor": "3",
+      "vniep": "10",
+      "vparz": "10",
+      "uwagi": ""
+    },
+    {
+      "stacja": "",
+      "odkm": "345,079",
+      "dokm": "345,179",
+      "przyczyna": "układ geometryczny toru - łącznik rozj. 12 i 13",
+      "tor": "1, 2",
+      "vniep": "30",
+      "vparz": "30",
+      "uwagi": "kierunek zwrotny, NIEOZNAKOWANE!"
+    },
+    {
+      "stacja": "",
+      "odkm": "345,143",
+      "dokm": "345,177",
+      "przyczyna": "zły stan techniczny rozjazdu 16",
+      "tor": "1",
+      "vniep": "20",
+      "vparz": "20",
+      "uwagi": "wprost i zwrotny, NIEOZNAKOWANE!"
+    },
+    {
+      "stacja": "",
+      "odkm": "345,851",
+      "dokm": "345,881",
+      "przyczyna": "zły stan techniczny rozjazdu 65",
+      "tor": "1",
+      "vniep": "15",
+      "vparz": "10",
+      "uwagi": "wprost i zwrotny, NIEOZNAKOWANE!"
+    }
   ],
   "Odolany": [
-    ["-0,050", "0,030", "zły stan rozj. nr 47,48,52,53", "6", "10", "10", "wjazd/wyjazd 6-13 rej. Wsch."],
-    ["0,200", "0,220", "zły stan podrozjezdnic nr 83", "8", "10", "10", ""],
-    ["0,625", "0,645", "zły stan rozj. nr 68", "3", "20", "20", ""],
-    ["1,190", "1,223", "zużycie części w rozj. nr 28", "9", "10", "10", ""],
-    ["1,450", "1,500", "zły stan toru", "7", "10", "10", ""],
-    ["1,662", "", "brak dróżnika przejazdowego", "", "70", "120", "20"],
-    ["2,311", "2,551", "ograniczona widzialność przejścia 2.341", "", "70", "120", "20"],
-    ["2,518", "", "", "", "70", "", "SHP przed tarczą ToM"],
-    ["2,700", "", "SHP przed sem. R", "", "50", "", "9"],
-    ["2,867", "", "ograniczona widzialność przejazdu", "1", "20", "20", "5"],
-    ["3,400", "", "SHP przed tarczą ToR", "", "", "", ""]
+    {
+      "stacja": "",
+      "odkm": "-0,050",
+      "dokm": "0,030",
+      "przyczyna": "zły stan rozj. nr 47,48,52,53",
+      "tor": "6",
+      "vniep": "10",
+      "vparz": "10",
+      "uwagi": "wjazd/wyjazd 6-13 rej. Wsch."
+    },
+    {
+      "stacja": "",
+      "odkm": "0,200",
+      "dokm": "0,220",
+      "przyczyna": "zły stan podrozjezdnic nr 83",
+      "tor": "8",
+      "vniep": "10",
+      "vparz": "10",
+      "uwagi": ""
+    },
+    {
+      "stacja": "",
+      "odkm": "0,625",
+      "dokm": "0,645",
+      "przyczyna": "zły stan rozj. nr 68",
+      "tor": "3",
+      "vniep": "20",
+      "vparz": "20",
+      "uwagi": ""
+    },
+    {
+      "stacja": "",
+      "odkm": "1,190",
+      "dokm": "1,223",
+      "przyczyna": "zużycie części w rozj. nr 28",
+      "tor": "9",
+      "vniep": "10",
+      "vparz": "10",
+      "uwagi": ""
+    },
+    {
+      "stacja": "",
+      "odkm": "1,450",
+      "dokm": "1,500",
+      "przyczyna": "zły stan toru",
+      "tor": "7",
+      "vniep": "10",
+      "vparz": "10",
+      "uwagi": ""
+    },
+    {
+      "stacja": "",
+      "odkm": "1,662",
+      "dokm": "",
+      "przyczyna": "brak dróżnika przejazdowego",
+      "tor": "",
+      "vniep": "70",
+      "vparz": "120",
+      "uwagi": "20"
+    },
+    {
+      "stacja": "",
+      "odkm": "2,311",
+      "dokm": "2,551",
+      "przyczyna": "ograniczona widzialność przejścia 2.341",
+      "tor": "",
+      "vniep": "70",
+      "vparz": "120",
+      "uwagi": "20"
+    },
+    {
+      "stacja": "",
+      "odkm": "2,518",
+      "dokm": "",
+      "przyczyna": "",
+      "tor": "",
+      "vniep": "70",
+      "vparz": "",
+      "uwagi": "SHP przed tarczą ToM"
+    },
+    {
+      "stacja": "",
+      "odkm": "2,700",
+      "dokm": "",
+      "przyczyna": "SHP przed sem. R",
+      "tor": "",
+      "vniep": "50",
+      "vparz": "",
+      "uwagi": "9"
+    },
+    {
+      "stacja": "",
+      "odkm": "2,867",
+      "dokm": "",
+      "przyczyna": "ograniczona widzialność przejazdu",
+      "tor": "1",
+      "vniep": "20",
+      "vparz": "20",
+      "uwagi": "5"
+    },
+    {
+      "stacja": "",
+      "odkm": "3,400",
+      "dokm": "",
+      "przyczyna": "SHP przed tarczą ToR",
+      "tor": "",
+      "vniep": "",
+      "vparz": "",
+      "uwagi": ""
+    }
   ],
   "Otok": [
-    ["190,930", "191,750", "zły stan toru", "4", "30", "30", ""],
-    ["191,000", "191,200", "zły stan podtorza", "1", "50", "50", ""],
-    ["191,000", "191,400", "zły stan podtorza", "2", "50", "50", ""],
-    ["192,180", "192,280", "tymczasowa konstrukcja odciążająca na moście", "1", "40", "40", ""],
-    ["192,180", "192,280", "tymczasowa konstrukcja odciążająca na moście", "2", "30", "30", ""],
-    ["195,190", "195,642", "ograniczona widoczność na przejeździe", "1", "70", "-", ""]
+    {
+      "stacja": "",
+      "odkm": "190,930",
+      "dokm": "191,750",
+      "przyczyna": "zły stan toru",
+      "tor": "4",
+      "vniep": "30",
+      "vparz": "30",
+      "uwagi": ""
+    },
+    {
+      "stacja": "",
+      "odkm": "191,000",
+      "dokm": "191,200",
+      "przyczyna": "zły stan podtorza",
+      "tor": "1",
+      "vniep": "50",
+      "vparz": "50",
+      "uwagi": ""
+    },
+    {
+      "stacja": "",
+      "odkm": "191,000",
+      "dokm": "191,400",
+      "przyczyna": "zły stan podtorza",
+      "tor": "2",
+      "vniep": "50",
+      "vparz": "50",
+      "uwagi": ""
+    },
+    {
+      "stacja": "",
+      "odkm": "192,180",
+      "dokm": "192,280",
+      "przyczyna": "tymczasowa konstrukcja odciążająca na moście",
+      "tor": "1",
+      "vniep": "40",
+      "vparz": "40",
+      "uwagi": ""
+    },
+    {
+      "stacja": "",
+      "odkm": "192,180",
+      "dokm": "192,280",
+      "przyczyna": "tymczasowa konstrukcja odciążająca na moście",
+      "tor": "2",
+      "vniep": "30",
+      "vparz": "30",
+      "uwagi": ""
+    },
+    {
+      "stacja": "",
+      "odkm": "195,190",
+      "dokm": "195,642",
+      "przyczyna": "ograniczona widoczność na przejeździe",
+      "tor": "1",
+      "vniep": "70",
+      "vparz": "-",
+      "uwagi": ""
+    }
   ],
   "Pszczyna": [
-    ["32,205", "32,986", "Ograniczona widoczność na przejeździe", "1, 2", "120", "120", "139"],
-    ["32,986", "33,767", "Ograniczona widoczność na przejeździe", "1, 2", "120", "120", ""]
+    {
+      "stacja": "",
+      "odkm": "32,205",
+      "dokm": "32,986",
+      "przyczyna": "Ograniczona widoczność na przejeździe",
+      "tor": "1, 2",
+      "vniep": "120",
+      "vparz": "120",
+      "uwagi": "139"
+    },
+    {
+      "stacja": "",
+      "odkm": "32,986",
+      "dokm": "33,767",
+      "przyczyna": "Ograniczona widoczność na przejeździe",
+      "tor": "1, 2",
+      "vniep": "120",
+      "vparz": "120",
+      "uwagi": ""
+    }
   ],
   "Rudnik nad Sanem": [
-    ["120,000", "123,800", "zły stan toru", "2", "50", "50", "68"],
-    ["121,772", "122,294", "ograniczona widoczność", "1", "80", "-", ""],
-    ["123,445", "123,903", "ograniczona widoczność", "1", "-", "70", ""],
-    ["123,800", "124,000", "zły stan podkładów i przytwierdzenia", "2", "40", "40", ""]
+    {
+      "stacja": "",
+      "odkm": "120,000",
+      "dokm": "123,800",
+      "przyczyna": "zły stan toru",
+      "tor": "2",
+      "vniep": "50",
+      "vparz": "50",
+      "uwagi": "68"
+    },
+    {
+      "stacja": "",
+      "odkm": "121,772",
+      "dokm": "122,294",
+      "przyczyna": "ograniczona widoczność",
+      "tor": "1",
+      "vniep": "80",
+      "vparz": "-",
+      "uwagi": ""
+    },
+    {
+      "stacja": "",
+      "odkm": "123,445",
+      "dokm": "123,903",
+      "przyczyna": "ograniczona widoczność",
+      "tor": "1",
+      "vniep": "-",
+      "vparz": "70",
+      "uwagi": ""
+    },
+    {
+      "stacja": "",
+      "odkm": "123,800",
+      "dokm": "124,000",
+      "przyczyna": "zły stan podkładów i przytwierdzenia",
+      "tor": "2",
+      "vniep": "40",
+      "vparz": "40",
+      "uwagi": ""
+    }
   ],
   "Sarnów Modrzejewski": [
-    ["11,059", "11,322", "pogorszenie stanu toru", "1", "50", "50", ""],
-    ["87,357", "87,369", "zła widoczność na przejeździe", "1", "-", "20", "tylko dla czoła pociągu, tylko dla kierunku parzystego"],
-    ["14,722", "14,985", "pogorszenie stanu toru", "1, 2", "40", "40", ""],
-    ["12,251", "13,181", "pogorszenie stanu toru", "6", "20", "20", ""],
-    ["12,657", "12,989", "plac manewrowy", "104, 106", "10", "10", ""]
+    {
+      "stacja": "",
+      "odkm": "11,059",
+      "dokm": "11,322",
+      "przyczyna": "pogorszenie stanu toru",
+      "tor": "1",
+      "vniep": "50",
+      "vparz": "50",
+      "uwagi": ""
+    },
+    {
+      "stacja": "",
+      "odkm": "87,357",
+      "dokm": "87,369",
+      "przyczyna": "zła widoczność na przejeździe",
+      "tor": "1",
+      "vniep": "-",
+      "vparz": "20",
+      "uwagi": "tylko dla czoła pociągu, tylko dla kierunku parzystego"
+    },
+    {
+      "stacja": "",
+      "odkm": "14,722",
+      "dokm": "14,985",
+      "przyczyna": "pogorszenie stanu toru",
+      "tor": "1, 2",
+      "vniep": "40",
+      "vparz": "40",
+      "uwagi": ""
+    },
+    {
+      "stacja": "",
+      "odkm": "12,251",
+      "dokm": "13,181",
+      "przyczyna": "pogorszenie stanu toru",
+      "tor": "6",
+      "vniep": "20",
+      "vparz": "20",
+      "uwagi": ""
+    },
+    {
+      "stacja": "",
+      "odkm": "12,657",
+      "dokm": "12,989",
+      "przyczyna": "plac manewrowy",
+      "tor": "104, 106",
+      "vniep": "10",
+      "vparz": "10",
+      "uwagi": ""
+    }
   ],
   "Skawce": [
-    ["37,300", "37,450", "uszkodzenie konstrukcji mostu", "1", "30", "30", ""],
-    ["40,500", "40,750", "R=297, 250, 257, 394 kp = 50, 40, 30 m", "1", "60", "60", ""],
-    ["40,750", "40,850", "niestabilność podłoża", "1", "40", "40", ""],
-    ["40,850", "41,400", "R=297, 250, 257, 394 kp = 50,40,30", "1", "60", "60", ""],
-    ["41,400", "42,000", "R=226, 223, 303, kp=28m", "1", "50", "50", ""]
+    {
+      "stacja": "",
+      "odkm": "37,300",
+      "dokm": "37,450",
+      "przyczyna": "uszkodzenie konstrukcji mostu",
+      "tor": "1",
+      "vniep": "30",
+      "vparz": "30",
+      "uwagi": ""
+    },
+    {
+      "stacja": "",
+      "odkm": "40,500",
+      "dokm": "40,750",
+      "przyczyna": "R=297, 250, 257, 394 kp = 50, 40, 30 m",
+      "tor": "1",
+      "vniep": "60",
+      "vparz": "60",
+      "uwagi": ""
+    },
+    {
+      "stacja": "",
+      "odkm": "40,750",
+      "dokm": "40,850",
+      "przyczyna": "niestabilność podłoża",
+      "tor": "1",
+      "vniep": "40",
+      "vparz": "40",
+      "uwagi": ""
+    },
+    {
+      "stacja": "",
+      "odkm": "40,850",
+      "dokm": "41,400",
+      "przyczyna": "R=297, 250, 257, 394 kp = 50,40,30",
+      "tor": "1",
+      "vniep": "60",
+      "vparz": "60",
+      "uwagi": ""
+    },
+    {
+      "stacja": "",
+      "odkm": "41,400",
+      "dokm": "42,000",
+      "przyczyna": "R=226, 223, 303, kp=28m",
+      "tor": "1",
+      "vniep": "50",
+      "vparz": "50",
+      "uwagi": ""
+    }
   ],
   "Skrzynki": [
-    ["47,800", "48,580", "zły stan toru", "4", "20", "20", ""]
+    {
+      "stacja": "",
+      "odkm": "47,800",
+      "dokm": "48,580",
+      "przyczyna": "zły stan toru",
+      "tor": "4",
+      "vniep": "20",
+      "vparz": "20",
+      "uwagi": ""
+    }
   ],
   "Strzelce Kujawskie": [
-    ["13,545", "14,283", "zły stan toru i podkładów", "3", "20", "20", "33"]
+    {
+      "stacja": "",
+      "odkm": "13,545",
+      "dokm": "14,283",
+      "przyczyna": "zły stan toru i podkładów",
+      "tor": "3",
+      "vniep": "20",
+      "vparz": "20",
+      "uwagi": "33"
+    }
   ],
   "Sucha Beskidzka": [
-    ["-0,430", "0,300", "zły stan techniczny toru", "2", "30", "30", ""],
-    ["1,067", "", "Przejazd - brak widoczności", "1", "30", "30", ""],
-    ["45,169", "", "Przejazd - brak widoczności", "1", "30", "30", "97"],
-    ["51.700", "51.750", "Zły stan toru w przejeździe", "1", "30", "30", "dot. autobusów szynowych"]
+    {
+      "stacja": "",
+      "odkm": "-0,430",
+      "dokm": "0,300",
+      "przyczyna": "zły stan techniczny toru",
+      "tor": "2",
+      "vniep": "30",
+      "vparz": "30",
+      "uwagi": ""
+    },
+    {
+      "stacja": "",
+      "odkm": "1,067",
+      "dokm": "",
+      "przyczyna": "Przejazd - brak widoczności",
+      "tor": "1",
+      "vniep": "30",
+      "vparz": "30",
+      "uwagi": ""
+    },
+    {
+      "stacja": "",
+      "odkm": "45,169",
+      "dokm": "",
+      "przyczyna": "Przejazd - brak widoczności",
+      "tor": "1",
+      "vniep": "30",
+      "vparz": "30",
+      "uwagi": "97"
+    },
+    {
+      "stacja": "",
+      "odkm": "51.700",
+      "dokm": "51.750",
+      "przyczyna": "Zły stan toru w przejeździe",
+      "tor": "1",
+      "vniep": "30",
+      "vparz": "30",
+      "uwagi": "dot. autobusów szynowych"
+    }
   ],
   "Suszec": [
-    ["17.600", "19.000", "Nierówność pionowa na szkodach górniczych", "1", "30", "30", "148"]
+    {
+      "stacja": "",
+      "odkm": "17.600",
+      "dokm": "19.000",
+      "przyczyna": "Nierówność pionowa na szkodach górniczych",
+      "tor": "1",
+      "vniep": "30",
+      "vparz": "30",
+      "uwagi": "148"
+    }
   ],
   "Szadek": [
-    ["178,920", "179,740", "zły stan toru", "3", "20", "20", ""]
+    {
+      "stacja": "",
+      "odkm": "178,920",
+      "dokm": "179,740",
+      "przyczyna": "zły stan toru",
+      "tor": "3",
+      "vniep": "20",
+      "vparz": "20",
+      "uwagi": ""
+    }
   ],
   "Świelborze": [
-    ["46,682", "46,604", "układ geometryczny toru", "1", "50", "50", ""],
-    ["218,367", "219,596", "stromy podjazd, stosować popych", "1", "-", "-", "dot. ciężkich poc. tow."],
-    ["219,960", "220,006", "zły stan rozjazdu", "2", "30", "30", ""],
-    ["1,835", "2,158", "Most dwudrogowy", "1", "20", "20", "zachować szczególną ostrożność"]
+    {
+      "stacja": "",
+      "odkm": "46,682",
+      "dokm": "46,604",
+      "przyczyna": "układ geometryczny toru",
+      "tor": "1",
+      "vniep": "50",
+      "vparz": "50",
+      "uwagi": ""
+    },
+    {
+      "stacja": "",
+      "odkm": "218,367",
+      "dokm": "219,596",
+      "przyczyna": "stromy podjazd, stosować popych",
+      "tor": "1",
+      "vniep": "-",
+      "vparz": "-",
+      "uwagi": "dot. ciężkich poc. tow."
+    },
+    {
+      "stacja": "",
+      "odkm": "219,960",
+      "dokm": "220,006",
+      "przyczyna": "zły stan rozjazdu",
+      "tor": "2",
+      "vniep": "30",
+      "vparz": "30",
+      "uwagi": ""
+    },
+    {
+      "stacja": "",
+      "odkm": "1,835",
+      "dokm": "2,158",
+      "przyczyna": "Most dwudrogowy",
+      "tor": "1",
+      "vniep": "20",
+      "vparz": "20",
+      "uwagi": "zachować szczególną ostrożność"
+    }
   ],
   "Testowo": [
-    ["22,426", "22,426", "-", "1", "-", "SHP", "-"]
+    {
+      "stacja": "",
+      "odkm": "22,426",
+      "dokm": "22,426",
+      "przyczyna": "-",
+      "tor": "1",
+      "vniep": "-",
+      "vparz": "SHP",
+      "uwagi": "-"
+    }
   ],
   "Trzymałkowice": [
-    ["63,135", "63,148", "Zły stan wiaduktu", "1", "40", "40", ""]
+    {
+      "stacja": "",
+      "odkm": "63,135",
+      "dokm": "63,148",
+      "przyczyna": "Zły stan wiaduktu",
+      "tor": "1",
+      "vniep": "40",
+      "vparz": "40",
+      "uwagi": ""
+    }
   ],
   "Warszowice-Strumień": [
-    ["4,532", "5,052", "ograniczona widoczność", "1, 2", "80", "80", "* )"],
+    {
+      "stacja": "",
+      "odkm": "4,532",
+      "dokm": "5,052",
+      "przyczyna": "ograniczona widoczność",
+      "tor": "1, 2",
+      "vniep": "80",
+      "vparz": "80",
+      "uwagi": "* )"
+    }
   ],
   "Wełtawa": [
-    ["62,672", "63,115", "Zły stan toru", "6", "30", "30", ""],
-    ["63,667", "63,713", "Zły stan rozjazdu", "1", "60", "60", ""],
-    ["65,033", "65,456", "Zły stan mostownic", "1", "40", "40", ""]
+    {
+      "stacja": "",
+      "odkm": "62,672",
+      "dokm": "63,115",
+      "przyczyna": "Zły stan toru",
+      "tor": "6",
+      "vniep": "30",
+      "vparz": "30",
+      "uwagi": ""
+    },
+    {
+      "stacja": "",
+      "odkm": "63,667",
+      "dokm": "63,713",
+      "przyczyna": "Zły stan rozjazdu",
+      "tor": "1",
+      "vniep": "60",
+      "vparz": "60",
+      "uwagi": ""
+    },
+    {
+      "stacja": "",
+      "odkm": "65,033",
+      "dokm": "65,456",
+      "przyczyna": "Zły stan mostownic",
+      "tor": "1",
+      "vniep": "40",
+      "vparz": "40",
+      "uwagi": ""
+    }
   ],
   "Wielichowo": [
-    ["244,194", "244,228", "waga wagonowa", "109", "20", "20", "WGA-WGB"],
-    ["1,244", "1,401", "zły stan techniczny wiaduktu", "1", "40", "40", ""],
-    ["251,476", "252,385", "zły stan techniczny nawierzchni", "1, 2", "90", "90", "Borowiki"],
-    ["252,123", "252,805", "układ geometryczny toru", "1, 2", "80", "80", "Borowiki"]
+    {
+      "stacja": "",
+      "odkm": "244,194",
+      "dokm": "244,228",
+      "przyczyna": "waga wagonowa",
+      "tor": "109",
+      "vniep": "20",
+      "vparz": "20",
+      "uwagi": "WGA-WGB"
+    },
+    {
+      "stacja": "",
+      "odkm": "1,244",
+      "dokm": "1,401",
+      "przyczyna": "zły stan techniczny wiaduktu",
+      "tor": "1",
+      "vniep": "40",
+      "vparz": "40",
+      "uwagi": ""
+    },
+    {
+      "stacja": "",
+      "odkm": "251,476",
+      "dokm": "252,385",
+      "przyczyna": "zły stan techniczny nawierzchni",
+      "tor": "1, 2",
+      "vniep": "90",
+      "vparz": "90",
+      "uwagi": "Borowiki"
+    },
+    {
+      "stacja": "",
+      "odkm": "252,123",
+      "dokm": "252,805",
+      "przyczyna": "układ geometryczny toru",
+      "tor": "1, 2",
+      "vniep": "80",
+      "vparz": "80",
+      "uwagi": "Borowiki"
+    }
   ],
   "Wijewo": [
-    ["42,833", "43,497", "Tor po naprawie", "1, 2", "30", "30", ""],
-    ["44,798", "45,097", "niestabilne podtorze", "1, 2", "80", "80", ""],
-    ["45,600", "45,635", "zły stan rozjazdu nr 3", "1", "50", "50", ""],
-    ["45,677", "45,781", "zły stan rozjazdu 8", "4", "20", "20", ""],
-    ["45,832", "46,571", "zły stan toru", "6", "20", "20", ""],
-    ["48,503", "48,516", "przekroczony iloczyn ruchu", "1, 2", "50", "50", "tylko czoło poc."]
+    {
+      "stacja": "",
+      "odkm": "42,833",
+      "dokm": "43,497",
+      "przyczyna": "Tor po naprawie",
+      "tor": "1, 2",
+      "vniep": "30",
+      "vparz": "30",
+      "uwagi": ""
+    },
+    {
+      "stacja": "",
+      "odkm": "44,798",
+      "dokm": "45,097",
+      "przyczyna": "niestabilne podtorze",
+      "tor": "1, 2",
+      "vniep": "80",
+      "vparz": "80",
+      "uwagi": ""
+    },
+    {
+      "stacja": "",
+      "odkm": "45,600",
+      "dokm": "45,635",
+      "przyczyna": "zły stan rozjazdu nr 3",
+      "tor": "1",
+      "vniep": "50",
+      "vparz": "50",
+      "uwagi": ""
+    },
+    {
+      "stacja": "",
+      "odkm": "45,677",
+      "dokm": "45,781",
+      "przyczyna": "zły stan rozjazdu 8",
+      "tor": "4",
+      "vniep": "20",
+      "vparz": "20",
+      "uwagi": ""
+    },
+    {
+      "stacja": "",
+      "odkm": "45,832",
+      "dokm": "46,571",
+      "przyczyna": "zły stan toru",
+      "tor": "6",
+      "vniep": "20",
+      "vparz": "20",
+      "uwagi": ""
+    },
+    {
+      "stacja": "",
+      "odkm": "48,503",
+      "dokm": "48,516",
+      "przyczyna": "przekroczony iloczyn ruchu",
+      "tor": "1, 2",
+      "vniep": "50",
+      "vparz": "50",
+      "uwagi": "tylko czoło poc."
+    }
   ],
   "Wilki": [
-    ["4,400", "4,980", "zły stan podtorza", "1", "60", "60", "doraźne"],
-    ["5,477", "6,132", "zły stan toru", "4", "20", "20", ""]
+    {
+      "stacja": "",
+      "odkm": "4,400",
+      "dokm": "4,980",
+      "przyczyna": "zły stan podtorza",
+      "tor": "1",
+      "vniep": "60",
+      "vparz": "60",
+      "uwagi": "doraźne"
+    },
+    {
+      "stacja": "",
+      "odkm": "5,477",
+      "dokm": "6,132",
+      "przyczyna": "zły stan toru",
+      "tor": "4",
+      "vniep": "20",
+      "vparz": "20",
+      "uwagi": ""
+    }
   ],
   "Winiary": [
-    ["45,300", "45,360", "zły stan nawierzchni toru", "5", "20", "20", ""],
-    ["45,360", "45,395", "zły stan rozjazdu", "105", "30", "30", "rozjazd 38"],
-    ["45,395", "46,131", "zły stan nawierzchni toru", "105", "20", "20", ""],
-    ["45,431", "46,160", "zły stan nawierzchni toru", "104", "20", "20", ""]
+    {
+      "stacja": "",
+      "odkm": "45,300",
+      "dokm": "45,360",
+      "przyczyna": "zły stan nawierzchni toru",
+      "tor": "5",
+      "vniep": "20",
+      "vparz": "20",
+      "uwagi": ""
+    },
+    {
+      "stacja": "",
+      "odkm": "45,360",
+      "dokm": "45,395",
+      "przyczyna": "zły stan rozjazdu",
+      "tor": "105",
+      "vniep": "30",
+      "vparz": "30",
+      "uwagi": "rozjazd 38"
+    },
+    {
+      "stacja": "",
+      "odkm": "45,395",
+      "dokm": "46,131",
+      "przyczyna": "zły stan nawierzchni toru",
+      "tor": "105",
+      "vniep": "20",
+      "vparz": "20",
+      "uwagi": ""
+    },
+    {
+      "stacja": "",
+      "odkm": "45,431",
+      "dokm": "46,160",
+      "przyczyna": "zły stan nawierzchni toru",
+      "tor": "104",
+      "vniep": "20",
+      "vparz": "20",
+      "uwagi": ""
+    }
   ],
   "Witowo": [
-    ["90,167", "102,000", "ewentualna kolizja z dużymi zwięrzętami (np. żubr, łoś)", "1", "-", "-", "jechać ostrożnie"],
-    ["102,967", "103,410", "ograniczona widoczność na przejeździe", "1", "80", "-", ""]
+    {
+      "stacja": "",
+      "odkm": "90,167",
+      "dokm": "102,000",
+      "przyczyna": "ewentualna kolizja z dużymi zwięrzętami (np. żubr, łoś)",
+      "tor": "1",
+      "vniep": "-",
+      "vparz": "-",
+      "uwagi": "jechać ostrożnie"
+    },
+    {
+      "stacja": "",
+      "odkm": "102,967",
+      "dokm": "103,410",
+      "przyczyna": "ograniczona widoczność na przejeździe",
+      "tor": "1",
+      "vniep": "80",
+      "vparz": "-",
+      "uwagi": ""
+    }
   ],
   "Wronowice": [
-    ["73,376", "73,581", "Zły stan krawędzi peronu", "1", "60", "60", ""],
-    ["75,034", "76,077", "zły stan toru", "4", "20", "20", ""]
+    {
+      "stacja": "",
+      "odkm": "73,376",
+      "dokm": "73,581",
+      "przyczyna": "Zły stan krawędzi peronu",
+      "tor": "1",
+      "vniep": "60",
+      "vparz": "60",
+      "uwagi": ""
+    },
+    {
+      "stacja": "",
+      "odkm": "75,034",
+      "dokm": "76,077",
+      "przyczyna": "zły stan toru",
+      "tor": "4",
+      "vniep": "20",
+      "vparz": "20",
+      "uwagi": ""
+    }
   ],
   "Zakopane": [
-    ["41,000", "41,065", "przejazdy brak widoczności + zły stan mostu km 41.042", "1", "30", "30", ""],
-    ["41,807", "43,200", "R=295,245,214,238,303 m brak kp", "21", "40", "40", ""]
+    {
+      "stacja": "",
+      "odkm": "41,000",
+      "dokm": "41,065",
+      "przyczyna": "przejazdy brak widoczności + zły stan mostu km 41.042",
+      "tor": "1",
+      "vniep": "30",
+      "vparz": "30",
+      "uwagi": ""
+    },
+    {
+      "stacja": "",
+      "odkm": "41,807",
+      "dokm": "43,200",
+      "przyczyna": "R=295,245,214,238,303 m brak kp",
+      "tor": "21",
+      "vniep": "40",
+      "vparz": "40",
+      "uwagi": ""
+    }
   ],
   "Zawadówka": [
-    ["237.490", "237.720", "układ geometryczny toru", "1", "80", "80", "7"],
-    ["237.490", "237.720", "układ geometryczny toru", "2", "80", "80", ""]
+    {
+      "stacja": "",
+      "odkm": "237.490",
+      "dokm": "237.720",
+      "przyczyna": "układ geometryczny toru",
+      "tor": "1",
+      "vniep": "80",
+      "vparz": "80",
+      "uwagi": "7"
+    },
+    {
+      "stacja": "",
+      "odkm": "237.490",
+      "dokm": "237.720",
+      "przyczyna": "układ geometryczny toru",
+      "tor": "2",
+      "vniep": "80",
+      "vparz": "80",
+      "uwagi": ""
+    }
   ],
   "Zbydniów": [
-    ["11,670", "11,760", "zły stan techniczny obiektu", "1", "40", "40", ""],
-    ["13,631", "14,239", "układ geometryczny toru", "1", "80", "80", ""],
-    ["14,100", "14,200", "układ geometryczny toru", "2", "40", "40", ""]
+    {
+      "stacja": "",
+      "odkm": "11,670",
+      "dokm": "11,760",
+      "przyczyna": "zły stan techniczny obiektu",
+      "tor": "1",
+      "vniep": "40",
+      "vparz": "40",
+      "uwagi": ""
+    },
+    {
+      "stacja": "",
+      "odkm": "13,631",
+      "dokm": "14,239",
+      "przyczyna": "układ geometryczny toru",
+      "tor": "1",
+      "vniep": "80",
+      "vparz": "80",
+      "uwagi": ""
+    },
+    {
+      "stacja": "",
+      "odkm": "14,100",
+      "dokm": "14,200",
+      "przyczyna": "układ geometryczny toru",
+      "tor": "2",
+      "vniep": "40",
+      "vparz": "40",
+      "uwagi": ""
+    }
   ],
   "Zebrzydowice": [
-    ["10,513", "11,139", "-", "5", "-", "80", "Vd) Linia 157"],
-    ["10,732", "11,139", "-", "3", "-", "30", "Vd) Linia 157"],
-    ["11,139", "11,390", "-", "3", "30", "-", "Vd) Linia 157"],
-    ["71,840", "72,196", "mały promień łuku", "1, 2", "100", "100", ""],
-    ["75,800", "76,400", "mały promień łuku", "2", "50", "50", ""],
-    ["77,200", "77,600", "zły stan torów i rozjazdów nr 122, 124, 126, 129, 130, 131, 133, 158, 159", "6, 7, 8, 9, 11, 13, 15, 17, 19, 23, 25, 27, 29, 31, 101, 103, 109", "20", "20", "*)"],
-    ["13,182", "13,315", "-", "4", "-", "40", "Vd) Linia 90"],
-    ["13,182", "13,450", "-", "4", "40", "-", "Vd) Linia 90"],
-    ["13,315", "13,450", "-", "4", "-", "40", "Vd) Linia 90"],
-    ["13,315", "13,450", "-", "4", "40", "-", "Vd) Linia 90"],
-    ["80,550", "80,662", "jazda z opuszczonymi pantografami", "1, 2", "60", "60", "E CD 292, 571"]
+    {
+      "stacja": "",
+      "odkm": "10,513",
+      "dokm": "11,139",
+      "przyczyna": "-",
+      "tor": "5",
+      "vniep": "-",
+      "vparz": "80",
+      "uwagi": "Vd) Linia 157"
+    },
+    {
+      "stacja": "",
+      "odkm": "10,732",
+      "dokm": "11,139",
+      "przyczyna": "-",
+      "tor": "3",
+      "vniep": "-",
+      "vparz": "30",
+      "uwagi": "Vd) Linia 157"
+    },
+    {
+      "stacja": "",
+      "odkm": "11,139",
+      "dokm": "11,390",
+      "przyczyna": "-",
+      "tor": "3",
+      "vniep": "30",
+      "vparz": "-",
+      "uwagi": "Vd) Linia 157"
+    },
+    {
+      "stacja": "",
+      "odkm": "71,840",
+      "dokm": "72,196",
+      "przyczyna": "mały promień łuku",
+      "tor": "1, 2",
+      "vniep": "100",
+      "vparz": "100",
+      "uwagi": ""
+    },
+    {
+      "stacja": "",
+      "odkm": "75,800",
+      "dokm": "76,400",
+      "przyczyna": "mały promień łuku",
+      "tor": "2",
+      "vniep": "50",
+      "vparz": "50",
+      "uwagi": ""
+    },
+    {
+      "stacja": "",
+      "odkm": "77,200",
+      "dokm": "77,600",
+      "przyczyna": "zły stan torów i rozjazdów nr 122, 124, 126, 129, 130, 131, 133, 158, 159",
+      "tor": "6, 7, 8, 9, 11, 13, 15, 17, 19, 23, 25, 27, 29, 31, 101, 103, 109",
+      "vniep": "20",
+      "vparz": "20",
+      "uwagi": "*)"
+    },
+    {
+      "stacja": "",
+      "odkm": "13,182",
+      "dokm": "13,315",
+      "przyczyna": "-",
+      "tor": "4",
+      "vniep": "-",
+      "vparz": "40",
+      "uwagi": "Vd) Linia 90"
+    },
+    {
+      "stacja": "",
+      "odkm": "13,182",
+      "dokm": "13,450",
+      "przyczyna": "-",
+      "tor": "4",
+      "vniep": "40",
+      "vparz": "-",
+      "uwagi": "Vd) Linia 90"
+    },
+    {
+      "stacja": "",
+      "odkm": "13,315",
+      "dokm": "13,450",
+      "przyczyna": "-",
+      "tor": "4",
+      "vniep": "-",
+      "vparz": "40",
+      "uwagi": "Vd) Linia 90"
+    },
+    {
+      "stacja": "",
+      "odkm": "13,315",
+      "dokm": "13,450",
+      "przyczyna": "-",
+      "tor": "4",
+      "vniep": "40",
+      "vparz": "-",
+      "uwagi": "Vd) Linia 90"
+    },
+    {
+      "stacja": "",
+      "odkm": "80,550",
+      "dokm": "80,662",
+      "przyczyna": "jazda z opuszczonymi pantografami",
+      "tor": "1, 2",
+      "vniep": "60",
+      "vparz": "60",
+      "uwagi": "E CD 292, 571"
+    }
   ],
   "Zgierz": [
-    ["58,550", "58,600", "przesunięta konstrukcja wiaduktu", "2", "30", "30", ""],
-    ["58,500", "58,850", "przesunięta konstrukcja wiaduktu", "1", "30", "30", ""],
-    ["14,400", "14,620", "ograniczona widoczność na przejeździe", "1", "40", "40", "tylko dla czoła pociągu"],
-    ["14,610", "14,840", "ograniczona widoczność na przejeździe", "1", "40", "40", "tylko dla czoła pociągu"]
+    {
+      "stacja": "",
+      "odkm": "58,550",
+      "dokm": "58,600",
+      "przyczyna": "przesunięta konstrukcja wiaduktu",
+      "tor": "2",
+      "vniep": "30",
+      "vparz": "30",
+      "uwagi": ""
+    },
+    {
+      "stacja": "",
+      "odkm": "58,500",
+      "dokm": "58,850",
+      "przyczyna": "przesunięta konstrukcja wiaduktu",
+      "tor": "1",
+      "vniep": "30",
+      "vparz": "30",
+      "uwagi": ""
+    },
+    {
+      "stacja": "",
+      "odkm": "14,400",
+      "dokm": "14,620",
+      "przyczyna": "ograniczona widoczność na przejeździe",
+      "tor": "1",
+      "vniep": "40",
+      "vparz": "40",
+      "uwagi": "tylko dla czoła pociągu"
+    },
+    {
+      "stacja": "",
+      "odkm": "14,610",
+      "dokm": "14,840",
+      "przyczyna": "ograniczona widoczność na przejeździe",
+      "tor": "1",
+      "vniep": "40",
+      "vparz": "40",
+      "uwagi": "tylko dla czoła pociągu"
+    }
   ],
   "Zielona Góra Główna": [
-    ["153,644", "153,933", "układ geometryczny toru", "1", "80", "80", ""],
-    ["154,510", "154,814", "układ geometryczny toru", "1", "80", "80", ""],
-    ["-", "-", "wjazd na tor zakończony kozłem oporowym", "8", "-", "20", ""],
-    ["0,900", "0,960", "układ geometryczny toru", "4", "40", "40", ""],
-    ["0,000", "0,800", "", "4", "70", "70", ""],
-    ["0,000", "0,800", "", "4", "60", "60", "tylko poc. tow."]
+    {
+      "stacja": "",
+      "odkm": "153,644",
+      "dokm": "153,933",
+      "przyczyna": "układ geometryczny toru",
+      "tor": "1",
+      "vniep": "80",
+      "vparz": "80",
+      "uwagi": ""
+    },
+    {
+      "stacja": "",
+      "odkm": "154,510",
+      "dokm": "154,814",
+      "przyczyna": "układ geometryczny toru",
+      "tor": "1",
+      "vniep": "80",
+      "vparz": "80",
+      "uwagi": ""
+    },
+    {
+      "stacja": "",
+      "odkm": "-",
+      "dokm": "-",
+      "przyczyna": "wjazd na tor zakończony kozłem oporowym",
+      "tor": "8",
+      "vniep": "-",
+      "vparz": "20",
+      "uwagi": ""
+    },
+    {
+      "stacja": "",
+      "odkm": "0,900",
+      "dokm": "0,960",
+      "przyczyna": "układ geometryczny toru",
+      "tor": "4",
+      "vniep": "40",
+      "vparz": "40",
+      "uwagi": ""
+    },
+    {
+      "stacja": "",
+      "odkm": "0,000",
+      "dokm": "0,800",
+      "przyczyna": "",
+      "tor": "4",
+      "vniep": "70",
+      "vparz": "70",
+      "uwagi": ""
+    },
+    {
+      "stacja": "",
+      "odkm": "0,000",
+      "dokm": "0,800",
+      "przyczyna": "",
+      "tor": "4",
+      "vniep": "60",
+      "vparz": "60",
+      "uwagi": "tylko poc. tow."
+    }
   ],
   "Zwardoń": [
-    ["113,964", "113,785", "jazda z opuszczonymi pantografami", "1", "-", "-", "*)"]
-  ],
+    {
+      "stacja": "",
+      "odkm": "113,964",
+      "dokm": "113,785",
+      "przyczyna": "jazda z opuszczonymi pantografami",
+      "tor": "1",
+      "vniep": "-",
+      "vparz": "-",
+      "uwagi": "*)"
+    }
+  ]
 };
