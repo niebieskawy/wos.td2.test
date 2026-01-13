@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    <script src="password-protect.js"></script>
+    <script src="password-protect.js"></script> 
     
     <!-- Umami Analytics -->
     <script defer src="https://cloud.umami.is/script.js" 
@@ -791,6 +791,33 @@
         const wpisy = input.split(/[,;]\s*/).map(s => s.trim());
         let lp = 1;
 
+        // Sprawdź czy jakakolwiek stacja z trasy znajduje się w bazie WOS
+        const znalezioneStacje = wpisy.filter(nazwaWp => {
+            const klucz = Object.keys(BAZA_OSTRZEZEN).find(k => normalizuj(k) === normalizuj(nazwaWp));
+            return klucz !== undefined;
+        });
+
+        // Jeśli nie znaleziono żadnych stacji z WOS, wyświetl komunikat
+        if (znalezioneStacje.length === 0) {
+            let html = `
+            <h1 style="margin:0 0 12px; font-size:15pt; text-align:center; color: var(--text-color);">
+                Wykaz Ostrzeżeń Stałych<br>
+                oraz prędkości drogowych
+            </h1>
+            <span style="float:right;">Godzina wydruku: <b>${new Date().toLocaleTimeString('pl-PL')}</b></span>
+            <span><br><br></span>
+            <span>Wygenerowano dla pociągu: <b>${trainsData.filter(t => t.driverName === maszynista).find(t => t.timetable?.path)?.trainNo || '—'}</b></span>
+            
+            <div class="warning-message" style="margin: 20px 0; text-align: center; font-size: 1.1em;">
+                <strong>ℹ️ Brak WOS dla danego rozkładu jazdy</strong><br>
+                Trasa pociągu nie zawiera stacji zdefiniowanych w bazie ostrzeżeń stałych.
+            </div>`;
+            
+            document.getElementById("wynik").innerHTML = html;
+            document.getElementById('printButton').disabled = true;
+            return;
+        }
+
         let html = `
         <h1 style="margin:0 0 12px; font-size:15pt; text-align:center; color: var(--text-color);">
             Wykaz Ostrzeżeń Stałych<br>
@@ -847,9 +874,10 @@
 
         html += "</tbody></table>";
         document.getElementById("wynik").innerHTML = html;
+        document.getElementById('printButton').disabled = false;
     }
 </script>
-<span style="float: right;">© Blue & Kacper9 & bagi2424</span><br><br>
+<span style="float: right;"> Blue & Kacper9 & bagi2424</span><br><br>
 <section class="no-print">
     <span style="float: right;">version 1.1.0</span><br><br>
     <span style="float: right; font-size: 0.8em;">Dane pobierane za pośrednictwem API: <a href="https://stacjownik-td2.spythere.eu">Stacjownik</a></span>
