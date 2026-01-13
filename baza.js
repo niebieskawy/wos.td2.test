@@ -49,16 +49,24 @@ const BAZA_OSTRZEZEN = {
     ["74.243", "77.337", "zły stan podrozjezdnic w rozjazdach 2 i 3", "1", "60", "60", ""],
     ["77.451", "77.463", "ograniczona widoczność na przejeździe", "1, 2", "20", "20", "tylko czoło"]
   ],
+  "Glinnik": [
+    ["48,200", "48,530", "ograniczona widoczność na przejeździe", "1", "50", "", "tylko dla czoła pociągu"],
+    ["48,510", "48,800", "ograniczona widoczność na przejeździe", "1", "", "50", "tylko dla czoła pociągu"],
+    ["51,550", "51,950", "ograniczona widoczność na przejeździe", "1", "70", "", "tylko dla czoła pociągu"],
+    ["52,250", "52,590", "ograniczona widoczność na przejeździe", "1", "60", "", "tylko dla czoła pociągu"],
+    ["52,580", "52,920", "ograniczona widoczność na przejeździe", "1", "", "60", "tylko dla czoła pociągu"],
+    ["53,600", "53,890", "ograniczona widoczność na przejeździe", "1", "50", "", "tylko dla czoła pociągu"]
+  ],
   "Gostynin": [
     ["27,445", "27,460", "warunki miejscowe przejazd", "1", "70", "70", "* )"],
     ["28,200", "28,920", "zły stan toru", "4", "20", "20", ""],
     ["31,651", "31,984", "ograniczona widoczność na przejeździe", "1", "60", "-", "Nowe! * )"]
   ],
-  "Gryfów Śląski": [
-    ["163,700", "163,920", "zły stan techniczny toru", "1", "40", "40", ""]
-  ],
   "Grębów": [
     ["6,028", "6,567", "układ geometryczny toru", "1", "80", "80", ""]
+  ],
+  "Gryfów Śląski": [
+    ["163,700", "163,920", "zły stan techniczny toru", "1", "40", "40", ""]
   ],
   "Hel": [
     ["61,506", "61,638", "brak drogi hamowania", "4", "20", "-", "* )"]
@@ -75,6 +83,10 @@ const BAZA_OSTRZEZEN = {
   ],
   "Kieły": [
     ["15,165", "15,180", "ograniczona widoczność na przejeździe", "1", "20", "20", "tylko czoło"]
+  ],
+  "Kłudna": [
+    ["212,350", "213,250", "zły stan szyn", "3", "20", "20", ""],
+    ["212,360", "213,200", "zły stan szyn", "4", "30", "30", ""]
   ],
   "Koszalin": [
     ["197,590", "198,100", "krótkie krzywe przejściowe", "1", "100", "100", ""],
@@ -105,6 +117,9 @@ const BAZA_OSTRZEZEN = {
     ["43,197", "44,817", "-", "6", "60", "60", "Vd) linia 358"],
     ["171,630", "172,080", "zaniżone parametry konstrukcji obiektu", "2", "50", "50", ""]
   ],
+  "LCS Głowno": [
+    ["32,600", "32,800", "zbyt mały promień łuku", "1", "90", "90", ""]
+  ],
   "LCS Grodzisk Mazowiecki": [
     ["4,707", "5,110", "brak drogi hamowania przed przejazdem km 4.702", "1", "-", "40", "przeciwny kierunek"]
   ],
@@ -118,6 +133,19 @@ const BAZA_OSTRZEZEN = {
   "Lisków": [
     ["66,190", "66,976", "Zły stan toru", "6", "20", "20", "* )"],
     ["66,248", "67,002", "Zły stan toru", "8", "20", "20", "* )"]
+  ],
+  "Lublinek": [
+    ["6,378", "7,282", "zły stan toru", "7", "20", "20", ""]
+  ],
+  "Łapanów": [
+    ["143,017", "143,060", "zły stan obiektu inż.", "1", "50", "50", "doraźne"],
+    ["145,754", "146,545", "zły stan podtorza", "10", "30", "30", "doraźne"],
+    ["177,455", "177,566", "zły stan mostownic", "1,2", "70", "70", ""],
+    ["182,604", "182,631", "zły stan przepustu", "1,2", "100", "100", ""]
+  ],
+  "Łódź Chojny": [
+    ["6,450", "6,660", "ograniczona widoczność na przejściu dla pieszych, zły stan wiaduktu", "1", "50", "50", ""],
+    ["6,450", "6,540", "zły stan wiaduktu", "2", "60", "60", ""]
   ],
   "Nowa Wieś Wielka": [
     ["-1,395", "0,200", "-", "?", "75", "50", "Vd) Linia 201, nieoznakowane"],
@@ -140,6 +168,14 @@ const BAZA_OSTRZEZEN = {
     ["2,700", "", "SHP przed sem. R", "", "50", "", "9"],
     ["2,867", "", "ograniczona widzialność przejazdu", "1", "20", "20", "5"],
     ["3,400", "", "SHP przed tarczą ToR", "", "", "", ""]
+  ],
+  "Otok": [
+    ["190,930", "191,750", "zły stan toru", "4", "30", "30", ""],
+    ["191,000", "191,200", "zły stan podtorza", "1", "50", "50", ""],
+    ["191,000", "191,400", "zły stan podtorza", "2", "50", "50", ""],
+    ["192,180", "192,280", "tymczasowa konstrukcja odciążająca na moście", "1", "40", "40", ""],
+    ["192,180", "192,280", "tymczasowa konstrukcja odciążająca na moście", "2", "30", "30", ""],
+    ["195,190", "195,642", "ograniczona widoczność na przejeździe", "1", "70", "-", ""]
   ],
   "Pszczyna": [
     ["32,205", "32,986", "Ograniczona widoczność na przejeździe", "1, 2", "120", "120", "139"],
@@ -165,6 +201,9 @@ const BAZA_OSTRZEZEN = {
     ["40,850", "41,400", "R=297, 250, 257, 394 kp = 50,40,30", "1", "60", "60", ""],
     ["41,400", "42,000", "R=226, 223, 303, kp=28m", "1", "50", "50", ""]
   ],
+  "Skrzynki": [
+    ["47,800", "48,580", "zły stan toru", "4", "20", "20", ""]
+  ],
   "Strzelce Kujawskie": [
     ["13,545", "14,283", "zły stan toru i podkładów", "3", "20", "20", "33"]
   ],
@@ -177,11 +216,23 @@ const BAZA_OSTRZEZEN = {
   "Suszec": [
     ["17.600", "19.000", "Nierówność pionowa na szkodach górniczych", "1", "30", "30", "148"]
   ],
+  "Szadek": [
+    ["178,920", "179,740", "zły stan toru", "3", "20", "20", ""]
+  ],
+  "Świelborze": [
+    ["46,682", "46,604", "układ geometryczny toru", "1", "50", "50", ""],
+    ["218,367", "219,596", "stromy podjazd, stosować popych", "1", "-", "-", "dot. ciężkich poc. tow."],
+    ["219,960", "220,006", "zły stan rozjazdu", "2", "30", "30", ""],
+    ["1,835", "2,158", "Most dwudrogowy", "1", "20", "20", "zachować szczególną ostrożność"]
+  ],
   "Testowo": [
     ["22,426", "22,426", "-", "1", "-", "SHP", "-"]
   ],
   "Trzymałkowice": [
     ["63,135", "63,148", "Zły stan wiaduktu", "1", "40", "40", ""]
+  ],
+  "Warszowice-Strumień": [
+    ["4,532", "5,052", "ograniczona widoczność", "1, 2", "80", "80", "* )"],
   ],
   "Wełtawa": [
     ["62,672", "63,115", "Zły stan toru", "6", "30", "30", ""],
@@ -216,9 +267,6 @@ const BAZA_OSTRZEZEN = {
     ["90,167", "102,000", "ewentualna kolizja z dużymi zwięrzętami (np. żubr, łoś)", "1", "-", "-", "jechać ostrożnie"],
     ["102,967", "103,410", "ograniczona widoczność na przejeździe", "1", "80", "-", ""]
   ],
-  "Worszowice - Strumień": [
-    ["4,532", "5,052", "ograniczona widoczność", "1, 2", "80", "80", "* )"]
-  ],
   "Wronowice": [
     ["73,376", "73,581", "Zły stan krawędzi peronu", "1", "60", "60", ""],
     ["75,034", "76,077", "zły stan toru", "4", "20", "20", ""]
@@ -249,6 +297,12 @@ const BAZA_OSTRZEZEN = {
     ["13,315", "13,450", "-", "4", "40", "-", "Vd) Linia 90"],
     ["80,550", "80,662", "jazda z opuszczonymi pantografami", "1, 2", "60", "60", "E CD 292, 571"]
   ],
+  "Zgierz": [
+    ["58,550", "58,600", "przesunięta konstrukcja wiaduktu", "2", "30", "30", ""],
+    ["58,500", "58,850", "przesunięta konstrukcja wiaduktu", "1", "30", "30", ""],
+    ["14,400", "14,620", "ograniczona widoczność na przejeździe", "1", "40", "40", "tylko dla czoła pociągu"],
+    ["14,610", "14,840", "ograniczona widoczność na przejeździe", "1", "40", "40", "tylko dla czoła pociągu"]
+  ],
   "Zielona Góra Główna": [
     ["153,644", "153,933", "układ geometryczny toru", "1", "80", "80", ""],
     ["154,510", "154,814", "układ geometryczny toru", "1", "80", "80", ""],
@@ -259,59 +313,5 @@ const BAZA_OSTRZEZEN = {
   ],
   "Zwardoń": [
     ["113,964", "113,785", "jazda z opuszczonymi pantografami", "1", "-", "-", "*)"]
-  ],
-  "Łapanów": [
-    ["143,017", "143,060", "zły stan obiektu inż.", "1", "50", "50", "doraźne"],
-    ["145,754", "146,545", "zły stan podtorza", "10", "30", "30", "doraźne"],
-    ["177,455", "177,566", "zły stan mostownic", "1,2", "70", "70", ""],
-    ["182,604", "182,631", "zły stan przepustu", "1,2", "100", "100", ""]
-  ],
-  "Świelborze": [
-    ["46,682", "46,604", "układ geometryczny toru", "1", "50", "50", ""],
-    ["218,367", "219,596", "stromy podjazd, stosować popych", "1", "-", "-", "dot. ciężkich poc. tow."],
-    ["219,960", "220,006", "zły stan rozjazdu", "2", "30", "30", ""],
-    ["1,835", "2,158", "Most dwudrogowy", "1", "20", "20", "zachować szczególną ostrożność"]
-  ],
-  "Glinnik": [
-    ["48,200", "48,530", "ograniczona widoczność na przejeździe", "1", "50", "", "tylko dla czoła pociągu"],
-    ["48,510", "48,800", "ograniczona widoczność na przejeździe", "1", "", "50", "tylko dla czoła pociągu"],
-    ["51,550", "51,950", "ograniczona widoczność na przejeździe", "1", "70", "", "tylko dla czoła pociągu"],
-    ["52,250", "52,590", "ograniczona widoczność na przejeździe", "1", "60", "", "tylko dla czoła pociągu"],
-    ["52,580", "52,920", "ograniczona widoczność na przejeździe", "1", "", "60", "tylko dla czoła pociągu"],
-    ["53,600", "53,890", "ograniczona widoczność na przejeździe", "1", "50", "", "tylko dla czoła pociągu"]
-  ],
-  "Kłudna": [
-    ["212,350", "213,250", "zły stan szyn", "3", "20", "20", ""],
-    ["212,360", "213,200", "zły stan szyn", "4", "30", "30", ""]
-  ],
-  "LCS Głowno": [
-    ["32,600", "32,800", "zbyt mały promień łuku", "1", "90", "90", ""]
-  ],
-  "Lublinek": [
-    ["6,378", "7,282", "zły stan toru", "7", "20", "20", ""]
-  ],
-  "Otok": [
-    ["190,930", "191,750", "zły stan toru", "4", "30", "30", ""],
-    ["191,000", "191,200", "zły stan podtorza", "1", "50", "50", ""],
-    ["191,000", "191,400", "zły stan podtorza", "2", "50", "50", ""],
-    ["192,180", "192,280", "tymczasowa konstrukcja odciążająca na moście", "1", "40", "40", ""],
-    ["192,180", "192,280", "tymczasowa konstrukcja odciążająca na moście", "2", "30", "30", ""],
-    ["195,190", "195,642", "ograniczona widoczność na przejeździe", "1", "70", "-", ""]
-  ],
-  "Skrzynki": [
-    ["47,800", "48,580", "zły stan toru", "4", "20", "20", ""]
-  ],
-  "Szadek": [
-    ["178,920", "179,740", "zły stan toru", "3", "20", "20", ""]
-  ],
-  "Zgierz": [
-    ["58,550", "58,600", "przesunięta konstrukcja wiaduktu", "2", "30", "30", ""],
-    ["58,500", "58,850", "przesunięta konstrukcja wiaduktu", "1", "30", "30", ""],
-    ["14,400", "14,620", "ograniczona widoczność na przejeździe", "1", "40", "40", "tylko dla czoła pociągu"],
-    ["14,610", "14,840", "ograniczona widoczność na przejeździe", "1", "40", "40", "tylko dla czoła pociągu"]
-  ],
-  "Łódź Chojny": [
-    ["6,450", "6,660", "ograniczona widoczność na przejściu dla pieszych, zły stan wiaduktu", "1", "50", "50", ""],
-    ["6,450", "6,540", "zły stan wiaduktu", "2", "60", "60", ""]
   ],
 };
