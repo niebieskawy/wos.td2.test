@@ -219,7 +219,7 @@ const BAZA_OSTRZEZEN = {
       "przyczyna": "Zły stan przejścia rozjazdowego",
       "tor": "-",
       "vniep": "20",
-      "vparz": "20",
+      "vparz": "20", 
       "uwagi": "dotyczy przejścia 5-6, jazda zwrotna"
     }
   ],
